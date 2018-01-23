@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Question1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Loaded="OnWindowLoaded">
     <Grid>
-        <Label Content="Bands" HorizontalAlignment="Left" Margin="78,47,0,0" VerticalAlignment="Top"/>
-        <Label Content="Band Information" HorizontalAlignment="Left" Margin="355,47,0,0" VerticalAlignment="Top"/>
-        <Label Content="Albums" HorizontalAlignment="Left" Margin="370,146,0,0" VerticalAlignment="Top"/>
-        <Label Content="Formed: " HorizontalAlignment="Left" Margin="308,84,0,0" VerticalAlignment="Top"/>
-        <Label Content="Members: " HorizontalAlignment="Left" Margin="299,115,0,0" VerticalAlignment="Top"/>
-        <Label Content="Genre" HorizontalAlignment="Left" Margin="31,84,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="GenreCombo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="78,88,0,0"/>
-        <ListBox x:Name="BandListBox" HorizontalAlignment="Left" Height="194" VerticalAlignment="Top" Width="167" Margin="31,115,0,0"/>
-        <TextBlock x:Name="YearFormedBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="370,89,0,0"/>
-        <TextBlock x:Name="MembersBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="370,120,0,0"/>
-        <ListBox x:Name="AlbumListBox" HorizontalAlignment="Left" Height="92" VerticalAlignment="Top" Width="217" Margin="290,177,0,0"/>
+        <Label Content="Bands" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Band Information" HorizontalAlignment="Left" Margin="354,11,0,0" VerticalAlignment="Top"/>
+        <Label Content="Albums" HorizontalAlignment="Left" Margin="376,157,0,0" VerticalAlignment="Top"/>
+        <Label Content="Formed: " HorizontalAlignment="Left" Margin="308,37,0,0" VerticalAlignment="Top"/>
+        <Label Content="Members: " HorizontalAlignment="Left" Margin="299,68,0,0" VerticalAlignment="Top"/>
+        <Label Content="Genre" HorizontalAlignment="Left" Margin="31,29,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="GenreCombo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="78,33,0,0"/>
+        <ListBox x:Name="BandListBox" HorizontalAlignment="Left" Height="220" VerticalAlignment="Top" Width="167" Margin="31,60,0,0" SelectionChanged="BandListBox_SelectionChanged"/>
+        <TextBlock x:Name="YearFormedBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="370,42,0,0"/>
+        <TextBlock x:Name="MembersBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="370,73,0,0"/>
+        <ListBox x:Name="AlbumListBox" HorizontalAlignment="Left" Height="92" VerticalAlignment="Top" Width="217" Margin="290,188,0,0"/>
 
     </Grid>
 </Window>
