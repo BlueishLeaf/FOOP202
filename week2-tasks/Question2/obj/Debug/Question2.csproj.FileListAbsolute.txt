@@ -1,0 +1,17 @@
+H:\Repos\FOOP202\Week2-Tasks\Question2\bin\Debug\Question2.exe.config
+H:\Repos\FOOP202\Week2-Tasks\Question2\bin\Debug\Question2.exe
+H:\Repos\FOOP202\Week2-Tasks\Question2\bin\Debug\Question2.pdb
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\MainWindow.g.cs
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\App.g.cs
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2_MarkupCompile.cache
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2_MarkupCompile.lref
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\MainWindow.baml
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2.g.resources
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2.Properties.Resources.resources
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2.csproj.GenerateResource.Cache
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2.csproj.CoreCompileInputs.cache
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2.exe
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2.pdb
+H:\Repos\FOOP202\Week2-Tasks\Question2\bin\Debug\Newtonsoft.Json.dll
+H:\Repos\FOOP202\Week2-Tasks\Question2\bin\Debug\Newtonsoft.Json.xml
+H:\Repos\FOOP202\Week2-Tasks\Question2\obj\Debug\Question2.csprojResolveAssemblyReference.cache

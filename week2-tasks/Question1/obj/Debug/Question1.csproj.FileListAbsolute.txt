@@ -1,0 +1,15 @@
+H:\Repos\FOOP202\Week2-Tasks\Question1\bin\Debug\Question1.exe.config
+H:\Repos\FOOP202\Week2-Tasks\Question1\bin\Debug\Question1.exe
+H:\Repos\FOOP202\Week2-Tasks\Question1\bin\Debug\Question1.pdb
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1.csprojResolveAssemblyReference.cache
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\MainWindow.g.cs
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\App.g.cs
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1_MarkupCompile.cache
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1_MarkupCompile.lref
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\MainWindow.baml
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1.g.resources
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1.Properties.Resources.resources
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1.csproj.GenerateResource.Cache
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1.csproj.CoreCompileInputs.cache
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1.exe
+H:\Repos\FOOP202\Week2-Tasks\Question1\obj\Debug\Question1.pdb
