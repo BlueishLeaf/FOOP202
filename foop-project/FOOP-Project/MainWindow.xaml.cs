@@ -20,6 +20,7 @@ namespace FOOP_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        Program appInstance = new Program();
         public MainWindow()
         {
             InitializeComponent();
