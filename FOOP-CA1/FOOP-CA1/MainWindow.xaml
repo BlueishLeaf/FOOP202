@@ -1,0 +1,50 @@
+﻿<Window x:Class="FOOP_CA1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FOOP_CA1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <RadioButton>All</RadioButton>
+            <RadioButton>Cars</RadioButton>
+            <RadioButton>Bikes</RadioButton>
+            <RadioButton>Vans</RadioButton>
+        </StackPanel>
+        <Image Grid.Row="2" Grid.Column="1"></Image>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">Sort By</Label>
+        <Label Grid.Row="1" Grid.Column="1">Vehicle Details</Label>
+        <ComboBox x:Name="SortCombo" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"></ComboBox>
+        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Grid.RowSpan="3" Margin="10" SelectionChanged="CarList_SelectionChanged"></ListBox>
+        <StackPanel Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Orientation="Vertical">
+            <Label>Make:</Label>
+            <Label>Model:</Label>
+            <Label>Price:</Label>
+            <Label>Year:</Label>
+            <Label>Mileage:</Label>
+            <Label>Description:</Label>
+            <Label>Engine:</Label>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button x:Name="LoadBtn" Click="LoadBtn_Click">Load</Button>
+            <Button x:Name="SaveBtn" Click="SaveBtn_Click">Save</Button> 
+            <Button x:Name="AddBtn" Click="AddBtn_Click">Add</Button>
+            <Button x:Name="EditBtn" Click="EditBtn_Click">Edit</Button>
+            <Button x:Name="DeleteBtn" Click="DeleteBtn_Click">Delete</Button>
+        </StackPanel>
+    </Grid>
+</Window>

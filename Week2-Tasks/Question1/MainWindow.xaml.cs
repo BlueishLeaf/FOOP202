@@ -38,26 +38,26 @@ namespace Question1
         {
             Random random = new Random();
             List<Player> playerList = new List<Player>();
-            playerList.Add(new Player("Killian1",GetRandomDOB(2008,2018,random)));
-            playerList.Add(new Player("Killian2", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian3", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian4", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian5", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian6", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian7", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian8", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian9", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian10", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian11", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian12", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian13", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian14", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian15", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian16", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian17", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian18", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian19", GetRandomDOB(2008, 2018, random)));
-            playerList.Add(new Player("Killian20", GetRandomDOB(2008, 2018, random)));
+            playerList.Add(new Player("Killian1",GetRandomDOB(2000,2010,random)));
+            playerList.Add(new Player("Killian2", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian3", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian4", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian5", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian6", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian7", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian8", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian9", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian10", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian11", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian12", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian13", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian14", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian15", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian16", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian17", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian18", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian19", GetRandomDOB(2000, 2010, random)));
+            playerList.Add(new Player("Killian20", GetRandomDOB(2000, 2010, random)));
             PlayerBox.ItemsSource = playerList;
         }
 
