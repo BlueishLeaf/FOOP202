@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +23,6 @@ namespace FOOP_CA1
     public partial class MainWindow : Window
     {
         Program appInstance = new Program();
-        List<Vehicle> vehicleList = new List<Vehicle>();
         public MainWindow()
         {
             InitializeComponent();
@@ -29,8 +30,8 @@ namespace FOOP_CA1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            vehicleList = appInstance.CreateVehicles();
-            CarList.ItemsSource = vehicleList;
+            appInstance.CreateVehicles();
+            CarList.ItemsSource = appInstance.VehicleCollection;
         }
 
         private void LoadBtn_Click(object sender, RoutedEventArgs e)
@@ -55,22 +56,21 @@ namespace FOOP_CA1
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            CarList.ItemsSource = null;
-            if (CarList.SelectedItem != null)
-            {
-                Vehicle selectedVehicle = (Vehicle)CarList.SelectedItem;
-                vehicleList = appInstance.DeleteItem(vehicleList,selectedVehicle);
-            }
-            CarList.ItemsSource = vehicleList;
+            if (CarList.SelectedItem == null) return;
+            var selectedVehicle = (Vehicle)CarList.SelectedItem;
+            appInstance.VehicleCollection = appInstance.DeleteItem(selectedVehicle);
         }
 
         private void CarList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (CarList.SelectedItem != null)
-            {
-                Vehicle selectedVehicle = (Vehicle)CarList.SelectedItem;
-
-            }
+            if (CarList.SelectedItem == null) return;
+            var selectedVehicle = (Vehicle)CarList.SelectedItem;
+            MakeBlock.Text = selectedVehicle.Make;
+            ModelBlock.Text = selectedVehicle.Model;
+            PriceBlock.Text = selectedVehicle.Price.ToString(CultureInfo.CurrentCulture);
+            YearBlock.Text = selectedVehicle.Year.ToString();
+            MileageBlock.Text = selectedVehicle.Mileage.ToString();
+            DescBlock.Text = selectedVehicle.Description;
         }
     }
 }

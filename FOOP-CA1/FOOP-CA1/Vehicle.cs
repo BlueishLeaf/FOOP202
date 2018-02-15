@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace FOOP_CA1
 {
-    class Vehicle
+    public enum BodyType {Convertible,Hatchback,Coupe,Estate,Mpv,Suv,Saloon,Unlisted}
+    public enum BikeType { Scooter, Trail, Bike, Sports, Commuter, Tourer }
+    public enum VanType { CombiVan, Dropside, PanelVan, Pickup, Tipper, Unlisted }
+    public enum Wheelbase { Short, Medium, Long, Unlisted }
+
+    internal class Vehicle
     {
         public string Make { get; set; }
         public string Model { get; set; }
@@ -21,26 +26,29 @@ namespace FOOP_CA1
             return String.Format("{0},{1},{2},{3},{4},{5},{6},{7}", Make, Model, Price, Year, Colour, Mileage, Description, Image);
         }
     }
-    class Car : Vehicle
+
+    internal class Car : Vehicle
     {
-        public string BodyType { get; set; }
+        public BodyType BodyType { get; set; }
         public override string ToString()
         {
             return String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", Make, Model, Price, Year, Colour, Mileage, Description, Image, BodyType);
         }
     }
-    class Motorcycle : Vehicle
+
+    internal class Motorcycle : Vehicle
     {
-        public string Type { get; set; }
+        public BikeType Type { get; set; }
         public override string ToString()
         {
             return String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", Make, Model, Price, Year, Colour, Mileage, Description, Image, Type);
         }
     }
-    class Van : Vehicle
+
+    internal class Van : Vehicle
     {
-        public string Wheelbase { get; set; }
-        public string Type { get; set; }
+        public Wheelbase Wheelbase { get; set; }
+        public VanType Type { get; set; }
         public override string ToString()
         {
             return String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", Make, Model, Price, Year, Colour, Mileage, Description, Image, Wheelbase, Type);

@@ -14,37 +14,117 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <RadioButton>All</RadioButton>
-            <RadioButton>Cars</RadioButton>
-            <RadioButton>Bikes</RadioButton>
-            <RadioButton>Vans</RadioButton>
-        </StackPanel>
+        <Grid Column="0" Row="0" ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <RadioButton Grid.Column="0">All</RadioButton>
+            <RadioButton Grid.Column="1">Cars</RadioButton>
+            <RadioButton Grid.Column="2">Bikes</RadioButton>
+            <RadioButton Grid.Column="3">Vans</RadioButton>
+        </Grid>
         <Image Grid.Row="2" Grid.Column="1"></Image>
-        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left">Sort By</Label>
-        <Label Grid.Row="1" Grid.Column="1">Vehicle Details</Label>
-        <ComboBox x:Name="SortCombo" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center"></ComboBox>
-        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Grid.RowSpan="3" Margin="10" SelectionChanged="CarList_SelectionChanged"></ListBox>
-        <StackPanel Grid.Column="1" Grid.Row="3" Grid.RowSpan="2" Orientation="Vertical">
-            <Label>Make:</Label>
-            <Label>Model:</Label>
-            <Label>Price:</Label>
-            <Label>Year:</Label>
-            <Label>Mileage:</Label>
-            <Label>Description:</Label>
-            <Label>Engine:</Label>
-        </StackPanel>
-        <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button x:Name="LoadBtn" Click="LoadBtn_Click">Load</Button>
-            <Button x:Name="SaveBtn" Click="SaveBtn_Click">Save</Button> 
-            <Button x:Name="AddBtn" Click="AddBtn_Click">Add</Button>
-            <Button x:Name="EditBtn" Click="EditBtn_Click">Edit</Button>
-            <Button x:Name="DeleteBtn" Click="DeleteBtn_Click">Delete</Button>
-        </StackPanel>
+        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label.Content>
+                <Viewbox>
+                    <TextBlock>Vehicle Details</TextBlock>
+                    </Viewbox>
+                </Label.Content>
+            </Label>
+        <Grid Row="1" Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label.Content>
+                    <Viewbox>
+                        <TextBlock>Sort By:</TextBlock>
+                    </Viewbox>
+                    </Label.Content>
+                </Label>
+            <Viewbox Grid.Column="1">
+                <ComboBox x:Name="SortCombo" MinWidth="100"  Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center"></ComboBox>
+            </Viewbox>
+        </Grid>
+        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="CarList_SelectionChanged"></ListBox>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Make:</Label>
+            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Model:</Label>
+            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Price:</Label>
+            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Year:</Label>
+            <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Mileage:</Label>
+            <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Description:</Label>
+            <TextBlock x:Name="MakeBlock" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="ModelBlock" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="PriceBlock" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="YearBlock" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="MileageBlock" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="DescBlock" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+        </Grid>
+        <Grid Row="3" Column="0" ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="LoadBtn" Click="LoadBtn_Click" Grid.Column="0" Margin="10">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock>Load</TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Grid.Column="1" Margin="10">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock>Save</TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+            <Button x:Name="AddBtn" Click="AddBtn_Click" Grid.Column="2" Margin="10">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock>Add</TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+            <Button x:Name="EditBtn" Click="EditBtn_Click" Grid.Column="3" Margin="10">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock>Edit</TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+            <Button x:Name="DeleteBtn" Click="DeleteBtn_Click" Grid.Column="4" Margin="10">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock>Delete</TextBlock>
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+        </Grid>
     </Grid>
 </Window>
+
