@@ -21,37 +21,21 @@ namespace FOOP_CA1
         public int Mileage { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        public override string ToString()
-        {
-            return String.Format("{0},{1},{2},{3},{4},{5},{6},{7}", Make, Model, Price, Year, Colour, Mileage, Description, Image);
-        }
     }
 
     internal class Car : Vehicle
     {
         public BodyType BodyType { get; set; }
-        public override string ToString()
-        {
-            return String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", Make, Model, Price, Year, Colour, Mileage, Description, Image, BodyType);
-        }
     }
 
     internal class Motorcycle : Vehicle
     {
         public BikeType Type { get; set; }
-        public override string ToString()
-        {
-            return String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8}", Make, Model, Price, Year, Colour, Mileage, Description, Image, Type);
-        }
     }
 
     internal class Van : Vehicle
     {
         public Wheelbase Wheelbase { get; set; }
         public VanType Type { get; set; }
-        public override string ToString()
-        {
-            return String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", Make, Model, Price, Year, Colour, Mileage, Description, Image, Wheelbase, Type);
-        }
     }
 }

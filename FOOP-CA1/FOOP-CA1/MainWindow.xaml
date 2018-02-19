@@ -6,6 +6,26 @@
         xmlns:local="clr-namespace:FOOP_CA1"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataTemplate x:Key="ListboxTemplate">
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Make:" Margin="5"/>
+                    <TextBlock Text="{Binding Make}" Margin="5"/>
+                    <TextBlock Text="Model:" Margin="5"/>
+                    <TextBlock Text="{Binding Model}" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Price:" Margin="5"/>
+                    <TextBlock Text="{Binding Price}" Margin="5"/>
+                    <TextBlock Text="Mileage:" Margin="5"/>
+                    <TextBlock Text="{Binding Mileage}" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -53,7 +73,7 @@
                 <ComboBox x:Name="SortCombo" MinWidth="100"  Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center"></ComboBox>
             </Viewbox>
         </Grid>
-        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="CarList_SelectionChanged"></ListBox>
+        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="CarList_SelectionChanged" ItemTemplate="{ StaticResource ListboxTemplate}"></ListBox>
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -68,6 +88,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Image>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Make:</Label>
             <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Model:</Label>
             <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Price:</Label>
