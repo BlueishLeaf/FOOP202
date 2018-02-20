@@ -47,7 +47,7 @@ namespace FOOP_CA1
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -77,7 +77,27 @@ namespace FOOP_CA1
 
         private void SortCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            appInstance.SortBy(SortCombo.SelectedItem.ToString());
+            CarList.ItemsSource = appInstance.SortBy(SortCombo.SelectedItem.ToString());
+        }
+
+        private void AllRadio_Checked(object sender, RoutedEventArgs e)
+        {
+           CarList.ItemsSource = appInstance.FilterBy("All");
+        }
+
+        private void CarsRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            CarList.ItemsSource = appInstance.FilterBy("Cars");
+        }
+
+        private void BikesRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            CarList.ItemsSource = appInstance.FilterBy("Bikes");
+        }
+
+        private void VansRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            CarList.ItemsSource = appInstance.FilterBy("Vans");
         }
     }
 }

@@ -30,7 +30,7 @@ namespace FOOP_CA1
                 },
                 new Motorcycle
                 {
-                    Make = "Ford",
+                    Make = "Audi",
                     Model = "Ford",
                     Price = 100000,
                     Year = 2010,
@@ -41,7 +41,7 @@ namespace FOOP_CA1
                 },
                 new Van
                 {
-                    Make = "Ford",
+                    Make = "Renault",
                     Model = "Ford",
                     Price = 100000,
                     Year = 2010,
@@ -82,19 +82,59 @@ namespace FOOP_CA1
             }
         }
 
-        public void SortBy(string arg)
+        public IOrderedEnumerable<Vehicle> SortBy(string arg)
         {
             switch (arg)
             {
                 case "Make":
-
-                    break;
+                    return VehicleCollection.OrderBy(a => a.Make);
                 case "Model":
-                    break;
+                    return VehicleCollection.OrderBy(a => a.Model);
                 case "Price":
-                    break;
+                    return VehicleCollection.OrderBy(a => a.Price);
                 case "Mileage":
-                    break;
+                    return VehicleCollection.OrderBy(a => a.Mileage);
+                default:
+                    return null;
+            }
+        }
+
+        public ObservableCollection<Vehicle> FilterBy(string arg)
+        {
+            ObservableCollection<Vehicle> filteredCollection = new ObservableCollection<Vehicle>();
+            switch (arg)
+            {
+                case "All":
+                    return VehicleCollection;
+                case "Cars":
+                    foreach (var vehicle in VehicleCollection)
+                    {
+                        if (vehicle.GetType() == typeof(Car))
+                        {
+                            filteredCollection.Add(vehicle);
+                        }
+                    }
+                    return filteredCollection;
+                case "Bikes":
+                    foreach (var vehicle in VehicleCollection)
+                    {
+                        if (vehicle.GetType() == typeof(Motorcycle))
+                        {
+                            filteredCollection.Add(vehicle);
+                        }
+                    }
+                    return filteredCollection;
+                case "Vans":
+                    foreach (var vehicle in VehicleCollection)
+                    {
+                        if (vehicle.GetType() == typeof(Van))
+                        {
+                            filteredCollection.Add(vehicle);
+                        }
+                    }
+                    return filteredCollection;
+                default:
+                    return filteredCollection;
             }
         }
     }

@@ -62,19 +62,19 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Image Source="assets/icons/allicon.PNG" Height="25" Width="30"></Image>
-                <RadioButton Foreground="Gray">All</RadioButton>
+                <RadioButton x:Name="AllRadio" Foreground="Gray" Checked="AllRadio_Checked" GroupName="sorts">All</RadioButton>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Image Source="assets/icons/caricon.PNG" Height="25" Width="30"></Image>
-                <RadioButton Foreground="Gray">Cars</RadioButton>
+                <RadioButton x:Name="CarsRadio" Foreground="Gray" Checked="CarsRadio_Checked" GroupName="sorts">Cars</RadioButton>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Image Source="assets/icons/bikeicon.PNG" Height="25" Width="30"></Image>
-                <RadioButton Foreground="Gray">Bikes</RadioButton>
+                <RadioButton x:Name="BikesRadio" Foreground="Gray" Checked="BikesRadio_Checked" GroupName="sorts">Bikes</RadioButton>
             </StackPanel>
             <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Image Source="assets/icons/truckicon.PNG" Height="25" Width="30"></Image>
-                <RadioButton Foreground="Gray">Vans</RadioButton>
+                <RadioButton x:Name="VansRadio" Foreground="Gray" Checked="VansRadio_Checked" GroupName="sorts">Vans</RadioButton>
             </StackPanel>
         </Grid>
         <Image Grid.Row="2" Grid.Column="1"></Image>
