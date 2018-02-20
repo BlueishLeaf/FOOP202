@@ -5,25 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FOOP_CA1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded">
+        Title="MainWindow" Height="480" Width="640" Loaded="Window_Loaded">
+    <Window.Background>
+        <SolidColorBrush Color="#19212d"></SolidColorBrush>
+    </Window.Background>
     <Window.Resources>
+        <Style x:Key="btnStyle" TargetType="Button">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
         <DataTemplate x:Key="ListboxTemplate">
-
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Make:" Margin="5"/>
-                    <TextBlock Text="{Binding Make}" Margin="5"/>
-                    <TextBlock Text="Model:" Margin="5"/>
-                    <TextBlock Text="{Binding Model}" Margin="5"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="Price:" Margin="5"/>
-                    <TextBlock Text="{Binding Price}" Margin="5"/>
-                    <TextBlock Text="Mileage:" Margin="5"/>
-                    <TextBlock Text="{Binding Mileage}" Margin="5"/>
-                </StackPanel>
-            </StackPanel>
-
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Source="{Binding GenericImage}"></Image>
+                <Label Grid.Row="0" Grid.Column="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center">Make:</Label>
+                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Make}" Margin="5"/>
+                <Label Grid.Row="0" Grid.Column="3" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center">Model:</Label>
+                <TextBlock Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Model}" Margin="5"/>
+                <Label Grid.Row="1" Grid.Column="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center">Price:</Label>
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Price}" Margin="5"/>
+                <Label Grid.Row="1" Grid.Column="3" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center">Mileage:</Label>
+                <TextBlock Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Mileage}" Margin="5"/>
+                <Rectangle Grid.Row="0" Grid.Column="5" Grid.RowSpan="2" Fill="{Binding Colour}" Width="50"></Rectangle>
+            </Grid>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -34,9 +49,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="5" Margin="5" BorderBrush="Orange" BorderThickness="5"></Border>
         <Grid Column="0" Row="0" ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -44,39 +60,34 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <RadioButton Grid.Column="0">All</RadioButton>
-            <RadioButton Grid.Column="1">Cars</RadioButton>
-            <RadioButton Grid.Column="2">Bikes</RadioButton>
-            <RadioButton Grid.Column="3">Vans</RadioButton>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="assets/icons/allicon.PNG" Height="25" Width="30"></Image>
+                <RadioButton Foreground="Gray">All</RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="assets/icons/caricon.PNG" Height="25" Width="30"></Image>
+                <RadioButton Foreground="Gray">Cars</RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="assets/icons/bikeicon.PNG" Height="25" Width="30"></Image>
+                <RadioButton Foreground="Gray">Bikes</RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Source="assets/icons/truckicon.PNG" Height="25" Width="30"></Image>
+                <RadioButton Foreground="Gray">Vans</RadioButton>
+            </StackPanel>
         </Grid>
         <Image Grid.Row="2" Grid.Column="1"></Image>
-        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label.Content>
-                <Viewbox>
-                    <TextBlock>Vehicle Details</TextBlock>
-                    </Viewbox>
-                </Label.Content>
-            </Label>
-        <Grid Row="1" Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Label.Content>
-                    <Viewbox>
-                        <TextBlock>Sort By:</TextBlock>
-                    </Viewbox>
-                    </Label.Content>
-                </Label>
-            <Viewbox Grid.Column="1">
-                <ComboBox x:Name="SortCombo" MinWidth="100"  Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center"></ComboBox>
-            </Viewbox>
-        </Grid>
-        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="CarList_SelectionChanged" ItemTemplate="{ StaticResource ListboxTemplate}"></ListBox>
+        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="Gray">Vehicle Details</Label>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Label HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray">Sort By:</Label>
+            <ComboBox x:Name="SortCombo" MinWidth="100"  Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="SortCombo_SelectionChanged"></ComboBox>
+        </StackPanel>
+        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="CarList_SelectionChanged" ItemTemplate="{ StaticResource ListboxTemplate}" Background="#19212d"></ListBox>
+
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -88,13 +99,13 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Image>
-            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Make:</Label>
-            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Model:</Label>
-            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Price:</Label>
-            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Year:</Label>
-            <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Mileage:</Label>
-            <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Description:</Label>
+            <Image x:Name="VehicleImg" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Make:</Label>
+            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Model:</Label>
+            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Price:</Label>
+            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Year:</Label>
+            <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Mileage:</Label>
+            <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Description:</Label>
             <TextBlock x:Name="MakeBlock" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
             <TextBlock x:Name="ModelBlock" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
             <TextBlock x:Name="PriceBlock" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
@@ -102,6 +113,7 @@
             <TextBlock x:Name="MileageBlock" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
             <TextBlock x:Name="DescBlock" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
         </Grid>
+
         <Grid Row="3" Column="0" ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -110,41 +122,11 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button x:Name="LoadBtn" Click="LoadBtn_Click" Grid.Column="0" Margin="10">
-                <Button.Content>
-                    <Viewbox>
-                        <TextBlock>Load</TextBlock>
-                    </Viewbox>
-                </Button.Content>
-            </Button>
-            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Grid.Column="1" Margin="10">
-                <Button.Content>
-                    <Viewbox>
-                        <TextBlock>Save</TextBlock>
-                    </Viewbox>
-                </Button.Content>
-            </Button>
-            <Button x:Name="AddBtn" Click="AddBtn_Click" Grid.Column="2" Margin="10">
-                <Button.Content>
-                    <Viewbox>
-                        <TextBlock>Add</TextBlock>
-                    </Viewbox>
-                </Button.Content>
-            </Button>
-            <Button x:Name="EditBtn" Click="EditBtn_Click" Grid.Column="3" Margin="10">
-                <Button.Content>
-                    <Viewbox>
-                        <TextBlock>Edit</TextBlock>
-                    </Viewbox>
-                </Button.Content>
-            </Button>
-            <Button x:Name="DeleteBtn" Click="DeleteBtn_Click" Grid.Column="4" Margin="10">
-                <Button.Content>
-                    <Viewbox>
-                        <TextBlock>Delete</TextBlock>
-                    </Viewbox>
-                </Button.Content>
-            </Button>
+            <Button x:Name="LoadBtn" Click="LoadBtn_Click" Grid.Column="0" Margin="15" Style="{StaticResource btnStyle}">Load</Button>
+            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Grid.Column="1" Margin="15" Style="{StaticResource btnStyle}">Save</Button>
+            <Button x:Name="AddBtn" Click="AddBtn_Click" Grid.Column="2" Margin="15" Style="{StaticResource btnStyle}">Add</Button>
+            <Button x:Name="EditBtn" Click="EditBtn_Click" Grid.Column="3" Margin="15" Style="{StaticResource btnStyle}">Edit</Button>
+            <Button x:Name="DeleteBtn" Click="DeleteBtn_Click" Grid.Column="4" Margin="15" Style="{StaticResource btnStyle}">Delete</Button>
         </Grid>
     </Grid>
 </Window>

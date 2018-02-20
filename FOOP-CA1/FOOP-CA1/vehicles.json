@@ -8,6 +8,7 @@
 		"Colour": "red",
 		"Image": "(UNDER 10)",
 		"Description": "Test description",
+		"BodyType":  1
 	},
 	{
 		"Make": "Ford",
@@ -17,7 +18,8 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"BodyType":  1
 	},
 	{
 		"Make": "Ford",
@@ -27,7 +29,8 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"BodyType":  1
 	},
 	{
 		"Make": "Ford",
@@ -37,7 +40,8 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"BikeType":  1
 	},
 	{
 		"Make": "Ford",
@@ -47,7 +51,8 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"BikeType":  1
 	},
 	{
 		"Make": "Ford",
@@ -57,7 +62,8 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"BikeType":  1
 	},
 	{
 		"Make": "Ford",
@@ -67,7 +73,8 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"BikeType":  1
 	},
 	{
 		"Make": "Ford",
@@ -77,7 +84,9 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"VanType": 1,
+		"WheelBase": 1
 	},
 	{
 		"Make": "Ford",
@@ -87,7 +96,9 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"VanType": 1,
+		"WheelBase": 1
 	},
 	{
 		"Make": "Ford",
@@ -97,6 +108,8 @@
 		"Mileage": 4500,
 		"Colour": "red",
 		"Image": "(UNDER 10)",
-		"Description": "Test description"
+		"Description": "Test description",
+		"VanType": 1,
+		"WheelBase": 1
 	}
 ]

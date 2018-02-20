@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace FOOP_CA1
 {
@@ -20,22 +22,35 @@ namespace FOOP_CA1
         public string Colour { get; set; }
         public int Mileage { get; set; }
         public string Description { get; set; }
-        public string Image { get; set; }
+        public BitmapImage GenericImage { get; set; }
     }
 
     internal class Car : Vehicle
     {
         public BodyType BodyType { get; set; }
+
+        public Car()
+        {
+            GenericImage = new BitmapImage(new Uri(@"\assets\icons\caricon.png", UriKind.Relative));
+        }
     }
 
     internal class Motorcycle : Vehicle
     {
         public BikeType Type { get; set; }
+        public Motorcycle()
+        {
+            GenericImage = new BitmapImage(new Uri(@"\assets\icons\bikeicon.png", UriKind.Relative));
+        }
     }
 
     internal class Van : Vehicle
     {
         public Wheelbase Wheelbase { get; set; }
         public VanType Type { get; set; }
+        public Van()
+        {
+            GenericImage = new BitmapImage(new Uri(@"\assets\icons\vanicon.png", UriKind.Relative));
+        }
     }
 }

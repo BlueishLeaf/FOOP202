@@ -26,6 +26,7 @@ namespace FOOP_CA1
         public MainWindow()
         {
             InitializeComponent();
+            SortCombo.ItemsSource = appInstance.ComboStrings;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -36,12 +37,12 @@ namespace FOOP_CA1
 
         private void LoadBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            appInstance.ReadJson();
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            appInstance.WriteJson();
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -65,12 +66,18 @@ namespace FOOP_CA1
         {
             if (CarList.SelectedItem == null) return;
             var selectedVehicle = (Vehicle)CarList.SelectedItem;
+            VehicleImg.Source = selectedVehicle.GenericImage;
             MakeBlock.Text = selectedVehicle.Make;
             ModelBlock.Text = selectedVehicle.Model;
             PriceBlock.Text = selectedVehicle.Price.ToString(CultureInfo.CurrentCulture);
             YearBlock.Text = selectedVehicle.Year.ToString();
             MileageBlock.Text = selectedVehicle.Mileage.ToString();
             DescBlock.Text = selectedVehicle.Description;
+        }
+
+        private void SortCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            appInstance.SortBy(SortCombo.SelectedItem.ToString());
         }
     }
 }

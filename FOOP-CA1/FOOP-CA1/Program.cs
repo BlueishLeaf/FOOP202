@@ -11,115 +11,47 @@ namespace FOOP_CA1
 {
     class Program
     {
+        public string[] ComboStrings = {"Make", "Model","Price","Mileage"};
         public ObservableCollection<Vehicle> VehicleCollection { get; set; }
         public ObservableCollection<Vehicle> CreateVehicles()
         {
-            //VehicleCollection = new ObservableCollection<Vehicle>
-            //{
-            //    new Car
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        BodyType = BodyType.Convertible
-            //    },
-            //    new Car
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        BodyType = BodyType.Coupe
-            //    },
-            //    new Car
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        BodyType = BodyType.Estate
-            //    },
-            //    new Motorcycle
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        Type = BikeType.Bike
-            //    },
-            //    new Motorcycle
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        Type = BikeType.Commuter
-            //    },
-            //    new Motorcycle
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        Type = BikeType.Scooter
-            //    },
-            //    new Van
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        Type = VanType.CombiVan,
-            //        Wheelbase = Wheelbase.Long
-            //    },
-            //    new Van
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        Type = VanType.Dropside,
-            //        Wheelbase = Wheelbase.Medium
-            //    },
-            //    new Van
-            //    {
-            //        Make = "Ford",
-            //        Model = "Ford",
-            //        Price = 100000,
-            //        Year = 2010,
-            //        Mileage = 50000,
-            //        Description = "Ford",
-            //        Colour = "Red",
-            //        Type = VanType.PanelVan,
-            //        Wheelbase = Wheelbase.Short
-            //    }
-            //};
-            VehicleCollection = ReadJSON();
+            VehicleCollection = new ObservableCollection<Vehicle>
+            {
+                new Car
+                {
+                    Make = "Ford",
+                    Model = "Ford",
+                    Price = 100000,
+                    Year = 2010,
+                    Mileage = 50000,
+                    Description = "Ford",
+                    Colour = "Red",
+                    BodyType = BodyType.Convertible
+                },
+                new Motorcycle
+                {
+                    Make = "Ford",
+                    Model = "Ford",
+                    Price = 100000,
+                    Year = 2010,
+                    Mileage = 50000,
+                    Description = "Ford",
+                    Colour = "Red",
+                    Type = BikeType.Bike
+                },
+                new Van
+                {
+                    Make = "Ford",
+                    Model = "Ford",
+                    Price = 100000,
+                    Year = 2010,
+                    Mileage = 50000,
+                    Description = "Ford",
+                    Colour = "Red",
+                    Type = VanType.CombiVan,
+                    Wheelbase = Wheelbase.Long
+                }
+            };
             return VehicleCollection;
         }
 
@@ -129,7 +61,7 @@ namespace FOOP_CA1
             return VehicleCollection;
         }
 
-        public ObservableCollection<Vehicle> ReadJSON()
+        public ObservableCollection<Vehicle> ReadJson()
         {
             using (StreamReader reader = new StreamReader("vehicles.json"))
             {
@@ -140,6 +72,30 @@ namespace FOOP_CA1
                 }
             }
             return VehicleCollection;
+        }
+
+        public void WriteJson()
+        {
+            using (StreamWriter writer = new StreamWriter("vehicles.json"))
+            {
+                writer.Write(JsonConvert.SerializeObject(VehicleCollection, Formatting.Indented));
+            }
+        }
+
+        public void SortBy(string arg)
+        {
+            switch (arg)
+            {
+                case "Make":
+
+                    break;
+                case "Model":
+                    break;
+                case "Price":
+                    break;
+                case "Mileage":
+                    break;
+            }
         }
     }
 }
