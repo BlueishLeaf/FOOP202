@@ -3,9 +3,13 @@ using Newtonsoft.Json;
 
 namespace FOOP_CA1
 {
-    using J = Newtonsoft.Json.JsonPropertyAttribute;
-    public class JsonVehicles
+    // This class manages the deserialisation of the vehicles.json file
+    using J = JsonPropertyAttribute;
+    public class JsonItem
     {
+        #region Properties
+        // The following properties are tagged with 'J'
+        // to flag them to be deserialised by the JSON deserialiser
         [J("Make")] public string Make { get; set; }
         [J("Model")] public string Model { get; set; }
         [J("Price")] public decimal Price { get; set; }
@@ -18,7 +22,10 @@ namespace FOOP_CA1
         [J("BikeType")] public int? BikeType { get; set; }
         [J("VanType")] public int? VanType { get; set; }
         [J("WheelBase")] public int? WheelBase { get; set; }
+        #endregion
 
-        public static List<JsonVehicles> DeserializeJson(string json) => JsonConvert.DeserializeObject<List<JsonVehicles>>(json);
+        // JSON is passed in and deserialised into a list of JsonItems.
+        // Uses a lamda expression
+        public static List<JsonItem> DeserializeJson(string json) => JsonConvert.DeserializeObject<List<JsonItem>>(json);
     }
 }

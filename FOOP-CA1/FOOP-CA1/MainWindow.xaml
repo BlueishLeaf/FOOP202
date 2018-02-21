@@ -3,138 +3,184 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FOOP_CA1"
+        xmlns:foopCa1="clr-namespace:FOOP_CA1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="640" Loaded="Window_Loaded">
+        Title="MainWindow" Height="600" Width="800" Icon="assets/icons/caricon.PNG">
     <Window.Background>
-        <SolidColorBrush Color="#252839"></SolidColorBrush>
+        <SolidColorBrush Color="#252839" />
     </Window.Background>
     <Window.Resources>
-        <Style x:Key="btnStyle" TargetType="Button">
-            <Setter Property="Background" Value="Gray"/>
-            <Setter Property="Foreground" Value="White"/>
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Foreground" Value="White" />
         </Style>
         <DataTemplate x:Key="ListboxTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Image Grid.Row="0" Grid.Column="0" Width="30" Grid.RowSpan="2" Source="{Binding GenericImage}"></Image>
+                <Image Grid.Row="0" Grid.Column="0" Width="30" Grid.RowSpan="2"
+                       Source="{Binding (foopCa1:Vehicle.GenericImage)}" />
 
-                <Label Grid.Row="0" Grid.Column="1" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Make:</Label>
-                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Make}" Margin="0"/>
+                <Label Grid.Row="0" Grid.Column="1" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="Gray">
+                    Make:
+                </Label>
+                <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="{Binding (foopCa1:Vehicle.Make)}" Margin="0" />
 
-                <Label Grid.Row="0" Grid.Column="3" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Model:</Label>
-                <TextBlock Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Model}" Margin="0"/>
+                <Label Grid.Row="0" Grid.Column="3" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="Gray">
+                    Model:
+                </Label>
+                <TextBlock Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="{Binding (foopCa1:Vehicle.Model)}" Margin="0" />
 
-                <Label Grid.Row="1" Grid.Column="1" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Price:</Label>
-                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Price}" Margin="0"/>
+                <Label Grid.Row="1" Grid.Column="1" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="Gray">
+                    Price:
+                </Label>
+                <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="{Binding (foopCa1:Vehicle.Price)}" Margin="0" />
 
-                <Label Grid.Row="1" Grid.Column="3" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Mileage:</Label>
-                <TextBlock Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Mileage}" Margin="0"/>
+                <Label Grid.Row="1" Grid.Column="3" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Foreground="Gray">
+                    Mileage:
+                </Label>
+                <TextBlock Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center"
+                           Text="{Binding (foopCa1:Vehicle.Mileage)}" Margin="0" />
 
-                <Rectangle Grid.Row="0" Grid.Column="5" Grid.RowSpan="2" Fill="{Binding Colour}" Width="50" Height="Auto" Margin="5,0,0,0"></Rectangle>
+                <Rectangle Grid.Row="0" Grid.Column="5" Grid.RowSpan="2" Fill="{Binding (foopCa1:Vehicle.Colour)}"
+                           Width="50" Height="Auto" Margin="5,0,0,0" />
 
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="6*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="5" Margin="5" BorderBrush="Orange" BorderThickness="5"></Border>
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" CornerRadius="5" Margin="5" BorderBrush="Orange"
+                BorderThickness="5" />
         <Grid Column="0" Row="0" ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image Source="assets/icons/allicon.PNG" Height="25" Width="30"></Image>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Image Source="assets/icons/allicon.PNG" Height="25" Width="30" />
                 <RadioButton x:Name="AllRadio" Foreground="Gray" Checked="AllRadio_Checked" GroupName="sorts">All</RadioButton>
             </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image Source="assets/icons/caricon.PNG" Height="25" Width="30"></Image>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Image Source="assets/icons/caricon.PNG" Height="25" Width="30" />
                 <RadioButton x:Name="CarsRadio" Foreground="Gray" Checked="CarsRadio_Checked" GroupName="sorts">Cars</RadioButton>
             </StackPanel>
-            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image Source="assets/icons/bikeicon.PNG" Height="25" Width="30"></Image>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Image Source="assets/icons/bikeicon.PNG" Height="25" Width="30" />
                 <RadioButton x:Name="BikesRadio" Foreground="Gray" Checked="BikesRadio_Checked" GroupName="sorts">Bikes</RadioButton>
             </StackPanel>
-            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Image Source="assets/icons/vanicon.PNG" Height="25" Width="30"></Image>
+            <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Image Source="assets/icons/vanicon.PNG" Height="25" Width="30" />
                 <RadioButton x:Name="VansRadio" Foreground="Gray" Checked="VansRadio_Checked" GroupName="sorts">Vans</RadioButton>
             </StackPanel>
         </Grid>
-        <Image Grid.Row="2" Grid.Column="1"></Image>
-        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="Gray">Vehicle Details</Label>
+        <Image Grid.Row="2" Grid.Column="1" />
+        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"
+               Foreground="Gray" FontWeight="Bold">
+            Vehicle Details
+        </Label>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Label HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray">Sort By:</Label>
-            <ComboBox x:Name="SortCombo" MinWidth="100"  Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="SortCombo_SelectionChanged"></ComboBox>
+            <Label HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Sort By:</Label>
+            <ComboBox x:Name="SortCombo" MinWidth="100" Margin="10" HorizontalAlignment="Left"
+                      VerticalAlignment="Center" SelectionChanged="SortCombo_SelectionChanged" />
         </StackPanel>
-        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="CarList_SelectionChanged" ItemTemplate="{ StaticResource ListboxTemplate}" Background="#252839"></ListBox>
+        <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="CarList_SelectionChanged"
+                 ItemTemplate="{ StaticResource ListboxTemplate}" Background="#252839" />
 
         <Grid Grid.Row="2" Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image x:Name="VehicleImg" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+            <Image x:Name="VehicleImg" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Make:</Label>
             <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Model:</Label>
             <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Price:</Label>
             <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Year:</Label>
             <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Mileage:</Label>
             <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">Description:</Label>
-            <TextBlock x:Name="MakeBlock" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-            <TextBlock x:Name="ModelBlock" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-            <TextBlock x:Name="PriceBlock" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-            <TextBlock x:Name="YearBlock" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-            <TextBlock x:Name="MileageBlock" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-            <TextBlock x:Name="DescBlock" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="MakeBlock" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <TextBlock x:Name="ModelBlock" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <TextBlock x:Name="PriceBlock" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <TextBlock x:Name="YearBlock" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <TextBlock x:Name="MileageBlock" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+            <TextBlock x:Name="DescBlock" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
         </Grid>
 
         <Grid Row="3" Column="0" ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="LoadBtn" Click="LoadBtn_Click" Grid.Column="0" Margin="15" Style="{StaticResource btnStyle}">Load</Button>
-            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Grid.Column="1" Margin="15" Style="{StaticResource btnStyle}">Save</Button>
-            <Button x:Name="AddBtn" Click="AddBtn_Click" Grid.Column="2" Margin="15" Style="{StaticResource btnStyle}">Add</Button>
-            <Button x:Name="EditBtn" Click="EditBtn_Click" Grid.Column="3" Margin="15" Style="{StaticResource btnStyle}">Edit</Button>
-            <Button x:Name="DeleteBtn" Click="DeleteBtn_Click" Grid.Column="4" Margin="15" Style="{StaticResource btnStyle}">Delete</Button>
+            <Button x:Name="LoadBtn" Click="LoadBtn_Click" Grid.Column="0" Margin="15"
+                    Style="{StaticResource BtnStyle}">
+                Load
+            </Button>
+            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Grid.Column="1" Margin="15"
+                    Style="{StaticResource BtnStyle}">
+                Save
+            </Button>
+            <Button x:Name="AddBtn" Click="AddBtn_Click" Grid.Column="2" Margin="15" Style="{StaticResource BtnStyle}">Add</Button>
+            <Button x:Name="EditBtn" Click="EditBtn_Click" Grid.Column="3" Margin="15"
+                    Style="{StaticResource BtnStyle}">
+                Edit
+            </Button>
+            <Button x:Name="DeleteBtn" Click="DeleteBtn_Click" Grid.Column="4" Margin="15"
+                    Style="{StaticResource BtnStyle}">
+                Delete
+            </Button>
         </Grid>
     </Grid>
 </Window>
-

@@ -1,0 +1,108 @@
+﻿<Window x:Class="FOOP_CA1.AddVehicle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FOOP_CA1"
+        mc:Ignorable="d"
+        Title="Vehicle Details" Height="650" Width="300" ResizeMode="NoResize" Icon="assets/icons/caricon.PNG">
+    <Window.Background>
+        <SolidColorBrush Color="#252839" />
+    </Window.Background>
+    <Window.Resources>
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition/>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Gray" FontSize="22" FontWeight="Bold">Vehicle Details</Label>
+
+        <Grid Grid.Column="0" Grid.Row="1" ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Image Source="assets/icons/caricon.PNG" Height="25" Width="30" />
+                <RadioButton x:Name="CarTypeRadio" Foreground="Gray" GroupName="types">Car</RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Image Source="assets/icons/bikeicon.PNG" Height="25" Width="30" />
+                <RadioButton x:Name="BikeTypeRadio" Foreground="Gray" GroupName="types">Bike</RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Image Source="assets/icons/vanicon.PNG" Height="25" Width="30" />
+                <RadioButton x:Name="VanTypeRadio" Foreground="Gray" GroupName="types">Van</RadioButton>
+            </StackPanel>
+        </Grid>
+
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Make</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Model</Label>
+        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+
+        <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Price</Label>
+        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+
+        <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Year</Label>
+        <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+
+        <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Colour</Label>
+        <TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+
+        <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Mileage</Label>
+        <TextBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+
+        <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Body Type</Label>
+        <TextBox Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=CarTypeRadio, Path=IsChecked}"></TextBox>
+
+        <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Bike Type</Label>
+        <TextBox Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=BikeTypeRadio, Path=IsChecked}"></TextBox>
+
+        <Label Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Van Type</Label>
+        <TextBox Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=VanTypeRadio, Path=IsChecked}"></TextBox>
+
+        <Label Grid.Row="11" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Wheelbase</Label>
+        <TextBox Grid.Row="11" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=VanTypeRadio, Path=IsChecked}"></TextBox>
+
+        <Label Grid.Row="12" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Description</Label>
+        <TextBox Grid.Row="12" Grid.Column="1" Grid.RowSpan="2" Margin="5" HorizontalAlignment="Left" MinWidth="100"></TextBox>
+
+        <Label Grid.Row="14" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Image</Label>
+        <Button x:Name="SelectFileBtn" Grid.Row="14" Grid.Column="1" Margin="5" MinWidth="100" Style="{StaticResource BtnStyle}" HorizontalAlignment="Left" Click="SelectFileBtn_Click">Select File</Button>
+
+        <Image Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2"></Image>
+
+        <Button x:Name="SaveDetailsBtn" Grid.Row="16" Grid.Column="0" Margin="5" Style="{StaticResource BtnStyle}" Click="SaveDetailsBtn_Click">Save</Button>
+        <Button x:Name="CancelBtn" Grid.Row="16" Grid.Column="1" Margin="5" Style="{StaticResource BtnStyle}" Click="CancelBtn_Click">Cancel</Button>
+    </Grid>
+</Window>
