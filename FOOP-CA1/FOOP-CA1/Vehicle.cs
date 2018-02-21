@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace FOOP_CA1
@@ -23,34 +18,28 @@ namespace FOOP_CA1
         public int Mileage { get; set; }
         public string Description { get; set; }
         public BitmapImage GenericImage { get; set; }
+        public string ImagePath { get; set; }
     }
 
     internal class Car : Vehicle
     {
         public BodyType BodyType { get; set; }
-
-        public Car()
-        {
-            GenericImage = new BitmapImage(new Uri(@"\assets\icons\caricon.png", UriKind.Relative));
-        }
+        public Car() => GenericImage = new BitmapImage(new Uri(@"\assets\icons\caricon.png", UriKind.Relative));
+        public override string ToString() => $"{Description},{BodyType}";
     }
 
     internal class Motorcycle : Vehicle
     {
         public BikeType Type { get; set; }
-        public Motorcycle()
-        {
-            GenericImage = new BitmapImage(new Uri(@"\assets\icons\bikeicon.png", UriKind.Relative));
-        }
+        public Motorcycle() => GenericImage = new BitmapImage(new Uri(@"\assets\icons\bikeicon.png", UriKind.Relative));
+        public override string ToString() => $"{Description},{Type}";
     }
 
     internal class Van : Vehicle
     {
         public Wheelbase Wheelbase { get; set; }
         public VanType Type { get; set; }
-        public Van()
-        {
-            GenericImage = new BitmapImage(new Uri(@"\assets\icons\vanicon.png", UriKind.Relative));
-        }
+        public Van() => GenericImage = new BitmapImage(new Uri(@"\assets\icons\vanicon.png", UriKind.Relative));
+        public override string ToString() => $"{Description},{Type},{Wheelbase}";
     }
 }

@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FOOP_CA1
 {
@@ -22,27 +9,27 @@ namespace FOOP_CA1
     /// </summary>
     public partial class MainWindow : Window
     {
-        Program appInstance = new Program();
+        private readonly Program _appInstance = new Program();
         public MainWindow()
         {
             InitializeComponent();
-            SortCombo.ItemsSource = appInstance.ComboStrings;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            appInstance.CreateVehicles();
-            CarList.ItemsSource = appInstance.VehicleCollection;
+            _appInstance.CreateVehicles();
+            SortCombo.ItemsSource = _appInstance.ComboStrings;
+            CarList.ItemsSource = _appInstance.VehicleCollection;
         }
 
         private void LoadBtn_Click(object sender, RoutedEventArgs e)
         {
-            appInstance.ReadJson();
+            _appInstance.ReadJson();
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            appInstance.WriteJson();
+            _appInstance.WriteJson();
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -59,45 +46,45 @@ namespace FOOP_CA1
         {
             if (CarList.SelectedItem == null) return;
             var selectedVehicle = (Vehicle)CarList.SelectedItem;
-            appInstance.VehicleCollection = appInstance.DeleteItem(selectedVehicle);
+            _appInstance.VehicleCollection = _appInstance.DeleteItem(selectedVehicle);
         }
 
         private void CarList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CarList.SelectedItem == null) return;
             var selectedVehicle = (Vehicle)CarList.SelectedItem;
-            VehicleImg.Source = selectedVehicle.GenericImage;
+            VehicleImg.Source = _appInstance.GetImage(selectedVehicle);
             MakeBlock.Text = selectedVehicle.Make;
             ModelBlock.Text = selectedVehicle.Model;
             PriceBlock.Text = selectedVehicle.Price.ToString(CultureInfo.CurrentCulture);
             YearBlock.Text = selectedVehicle.Year.ToString();
             MileageBlock.Text = selectedVehicle.Mileage.ToString();
-            DescBlock.Text = selectedVehicle.Description;
+            DescBlock.Text = selectedVehicle.ToString();
         }
 
         private void SortCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CarList.ItemsSource = appInstance.SortBy(SortCombo.SelectedItem.ToString());
+            CarList.ItemsSource = _appInstance.SortBy(SortCombo.SelectedItem.ToString());
         }
 
         private void AllRadio_Checked(object sender, RoutedEventArgs e)
         {
-           CarList.ItemsSource = appInstance.FilterBy("All");
+           CarList.ItemsSource = _appInstance.FilterBy("All");
         }
 
         private void CarsRadio_Checked(object sender, RoutedEventArgs e)
         {
-            CarList.ItemsSource = appInstance.FilterBy("Cars");
+            CarList.ItemsSource = _appInstance.FilterBy("Cars");
         }
 
         private void BikesRadio_Checked(object sender, RoutedEventArgs e)
         {
-            CarList.ItemsSource = appInstance.FilterBy("Bikes");
+            CarList.ItemsSource = _appInstance.FilterBy("Bikes");
         }
 
         private void VansRadio_Checked(object sender, RoutedEventArgs e)
         {
-            CarList.ItemsSource = appInstance.FilterBy("Vans");
+            CarList.ItemsSource = _appInstance.FilterBy("Vans");
         }
     }
 }

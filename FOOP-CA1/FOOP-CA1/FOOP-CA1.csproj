@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Deserializer.cs" />
     <Compile Include="NewVehicle.xaml.cs">
       <DependentUpon>NewVehicle.xaml</DependentUpon>
     </Compile>
@@ -110,18 +111,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="assets\icons\allicon.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets\icons\bikeicon.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets\icons\caricon.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="assets\icons\vanicon.PNG">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="assets\icons\allicon.PNG" />
+    <Resource Include="assets\icons\bikeicon.PNG" />
+    <Resource Include="assets\icons\caricon.PNG" />
+    <Resource Include="assets\icons\vanicon.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\images\b1.png" />
+    <Resource Include="assets\images\b2.png" />
+    <Resource Include="assets\images\b3.png" />
+    <Resource Include="assets\images\b4.png" />
+    <Resource Include="assets\images\c1.png" />
+    <Resource Include="assets\images\c2.png" />
+    <Resource Include="assets\images\c3.png" />
+    <Resource Include="assets\images\c4.png" />
+    <Resource Include="assets\images\v1.png" />
+    <Resource Include="assets\images\v2.png" />
+    <Resource Include="assets\images\v3.png" />
+    <Resource Include="assets\images\v4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
