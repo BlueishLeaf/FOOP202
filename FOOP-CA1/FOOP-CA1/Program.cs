@@ -183,14 +183,14 @@ namespace FOOP_CA1
         #region Adding/Editing Vehicles
         public void AddVehicle(MainWindow main)
         {
-            AddVehicle addVehicle = new AddVehicle(null) { Owner = main };
+            AddVehicle addVehicle = new AddVehicle { Owner = main };
             addVehicle.ShowDialog();
         }
 
         public void EditVehicle(MainWindow main, Vehicle selectedVehicle)
         {
-            AddVehicle addVehicle = new AddVehicle(selectedVehicle) { Owner = main };
-            addVehicle.ShowDialog();
+            var editVehicle = new EditVehicle(selectedVehicle) { Owner = main};
+            editVehicle.ShowDialog();
         }
         #endregion
 
@@ -206,14 +206,14 @@ namespace FOOP_CA1
             return openFileDialog.ShowDialog() == true ? File.ReadAllText(openFileDialog.FileName) : null;
         }
 
-        public BitmapImage SelectImage()
+        public string SelectImage()
         {
             var openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = Directory.GetCurrentDirectory(),
                 Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg"
             };
-            return openFileDialog.ShowDialog() == true ? new BitmapImage(new Uri(openFileDialog.FileName)) : null;
+            return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : null;
         }
 
         public void SaveDetails(Vehicle newVehicle)

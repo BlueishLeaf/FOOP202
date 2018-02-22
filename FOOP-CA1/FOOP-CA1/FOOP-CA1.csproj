@@ -61,9 +61,16 @@
       <DependentUpon>AddVehicle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Deserializer.cs" />
+    <Compile Include="EditVehicle.xaml.cs">
+      <DependentUpon>EditVehicle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Vehicle.cs" />
     <Page Include="AddVehicle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditVehicle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

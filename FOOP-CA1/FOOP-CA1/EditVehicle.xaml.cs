@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -16,16 +15,42 @@ using System.Windows.Shapes;
 
 namespace FOOP_CA1
 {
-    /// <inheritdoc cref="Program" />
     /// <summary>
-    /// Interaction logic for AddVehicle.xaml
+    /// Interaction logic for EditVehicle.xaml
     /// </summary>
-    public partial class AddVehicle : Window
+    public partial class EditVehicle : Window
     {
-        public Vehicle NewVehicle = new Vehicle();
-        public AddVehicle()
+        public Vehicle NewVehicle { get; set; }
+        public EditVehicle(Vehicle selectedVehicle)
         {
             InitializeComponent();
+            if (selectedVehicle.GetType() == typeof(Car))
+            {
+                CarTypeRadio.IsChecked = true;
+                var tempCar = selectedVehicle as Car;
+                BodyTypeBox.Text = tempCar.BodyType.ToString();
+            }
+            else if (selectedVehicle.GetType() == typeof(Motorcycle))
+            {
+                BikeTypeRadio.IsChecked = true;
+                var tempBike = selectedVehicle as Motorcycle;
+                BikeTypeBox.Text = tempBike.Type.ToString();
+            }
+            else if (selectedVehicle.GetType() == typeof(Van))
+            {
+                VanTypeRadio.IsChecked = true;
+                var tempVan = selectedVehicle as Van;
+                VanTypeBox.Text = tempVan.Type.ToString();
+                WheelbaseBox.Text = tempVan.Wheelbase.ToString();
+            }
+            MakeBox.Text = selectedVehicle.Make;
+            ModelBox.Text = selectedVehicle.Model;
+            PriceBox.Text = selectedVehicle.Price.ToString(CultureInfo.InvariantCulture);
+            YearBox.Text = selectedVehicle.Year.ToString();
+            ColourBox.Text = selectedVehicle.Colour;
+            MileageBox.Text = selectedVehicle.Mileage.ToString();
+            DescriptionBox.Text = selectedVehicle.Description;
+            NewVehicle = selectedVehicle;
         }
 
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
@@ -43,20 +68,19 @@ namespace FOOP_CA1
             NewVehicle.Colour = ColourBox.Text;
             NewVehicle.Mileage = Convert.ToInt32(MileageBox.Text);
             NewVehicle.Description = DescriptionBox.Text;
-            NewVehicle.GetImage();
-            if (CarTypeRadio.IsChecked == true)
+            if (NewVehicle.GetType() == typeof(Car))
             {
-                var tempCar = (Car)NewVehicle;
+                var tempCar = NewVehicle as Car;
                 tempCar.BodyType = (BodyType)Enum.Parse(typeof(BodyType), BodyTypeBox.Text);
             }
-            else if (BikeTypeRadio.IsChecked == true)
+            else if (NewVehicle.GetType() == typeof(Motorcycle))
             {
-                var tempBike = (Motorcycle)NewVehicle;
+                var tempBike = NewVehicle as Motorcycle;
                 tempBike.Type = (BikeType)Enum.Parse(typeof(BikeType), BikeTypeBox.Text);
             }
-            else if (VanTypeRadio.IsChecked == true)
+            else if (NewVehicle.GetType() == typeof(Van))
             {
-                var tempVan = (Van)NewVehicle;
+                var tempVan = NewVehicle as Van;
                 tempVan.Type = (VanType)Enum.Parse(typeof(VanType), VanTypeBox.Text);
                 tempVan.Wheelbase = (Wheelbase)Enum.Parse(typeof(Wheelbase), WheelbaseBox.Text);
             }
