@@ -29,10 +29,10 @@ namespace FOOP_CA1
         #region ButtonEvents
         // Click events for each button. Each event has a lamda expression
         // calling the relevant method in the control class
-        private void LoadBtn_Click(object sender, RoutedEventArgs e) => AppInstance.SelectFile("Json");
+        private void LoadBtn_Click(object sender, RoutedEventArgs e) => AppInstance.ParseJsonItems();
         private void SaveBtn_Click(object sender, RoutedEventArgs e) => AppInstance.SaveToJson();
         private void AddBtn_Click(object sender, RoutedEventArgs e) => AppInstance.AddVehicle(this);
-        private void EditBtn_Click(object sender, RoutedEventArgs e) => AppInstance.EditVehicle(this);
+        private void EditBtn_Click(object sender, RoutedEventArgs e) => AppInstance.EditVehicle(this, CarList.SelectedItem as Vehicle);
         private void DeleteBtn_Click(object sender, RoutedEventArgs e) => AppInstance.DeleteItem((Vehicle)CarList.SelectedItem);
         #endregion
 

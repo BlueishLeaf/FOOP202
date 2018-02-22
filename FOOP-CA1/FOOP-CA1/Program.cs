@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
+using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
@@ -70,8 +73,9 @@ namespace FOOP_CA1
         // Reads in the JSON from a file and passes the string to the deserializer class.
         // Loops through the JsonItem list and checks what nullable properties are not null
         // to determine the Item's vehicle type, then creates an instance of that class using the Item's information
-        public ObservableCollection<Vehicle> ParseJsonItems(string json)
+        public ObservableCollection<Vehicle> ParseJsonItems()
         {
+            string json = SelectFile();
             var vehicles = JsonItem.DeserializeJson(json);
             foreach (var vehicle in vehicles)
                 if (vehicle.BodyType != null)
@@ -179,35 +183,44 @@ namespace FOOP_CA1
         #region Adding/Editing Vehicles
         public void AddVehicle(MainWindow main)
         {
-            AddVehicle addVehicle = new AddVehicle {Owner = main};
+            AddVehicle addVehicle = new AddVehicle(null) { Owner = main };
             addVehicle.ShowDialog();
         }
 
-        public void EditVehicle(MainWindow main)
+        public void EditVehicle(MainWindow main, Vehicle selectedVehicle)
         {
-            AddVehicle addVehicle = new AddVehicle { Owner = main };
+            AddVehicle addVehicle = new AddVehicle(selectedVehicle) { Owner = main };
             addVehicle.ShowDialog();
         }
         #endregion
 
         // Opens up a file explorer for the user to select either a json file or an image depending
         // on the argument. The explorer is filtered so that only files of a suitable type can be selected
-        public void SelectFile(string fileType)
+        public string SelectFile()
         {
-            var openFileDialog = new OpenFileDialog { InitialDirectory = Directory.GetCurrentDirectory() };
-            switch (fileType)
+            var openFileDialog = new OpenFileDialog
             {
-                case "Json":
-                    openFileDialog.Filter = "Json files (*.json)|*.json";
-                    if (openFileDialog.ShowDialog() == true)
-                        ParseJsonItems(File.ReadAllText(openFileDialog.FileName));
-                    break;
-                case "Image":
-                    openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg";
-                    if (openFileDialog.ShowDialog() == true)
-                        ParseJsonItems(File.ReadAllText(openFileDialog.FileName));
-                    break;
-            }
+                InitialDirectory = Directory.GetCurrentDirectory(),
+                Filter = "Json files (*.json)|*.json"
+            };
+            return openFileDialog.ShowDialog() == true ? File.ReadAllText(openFileDialog.FileName) : null;
         }
+
+        public BitmapImage SelectImage()
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = Directory.GetCurrentDirectory(),
+                Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg"
+            };
+            return openFileDialog.ShowDialog() == true ? new BitmapImage(new Uri(openFileDialog.FileName)) : null;
+        }
+
+        public void SaveDetails(Vehicle newVehicle)
+        {
+            VehicleCollection.Remove(newVehicle);
+            VehicleCollection.Add(newVehicle);
+        }
+
     }
 }

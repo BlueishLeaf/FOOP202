@@ -65,42 +65,42 @@
         </Grid>
 
         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Make</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+        <TextBox x:Name="MakeBox" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
 
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Model</Label>
-        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+        <TextBox x:Name="ModelBox" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
 
         <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Price</Label>
-        <TextBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+        <TextBox x:Name="PriceBox" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
 
         <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Year</Label>
-        <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+        <TextBox x:Name="YearBox" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
 
         <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Colour</Label>
-        <TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+        <TextBox x:Name="ColourBox" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
 
         <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Mileage</Label>
-        <TextBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
+        <TextBox x:Name="MileageBox" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5"></TextBox>
 
         <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Body Type</Label>
-        <TextBox Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=CarTypeRadio, Path=IsChecked}"></TextBox>
+        <TextBox x:Name="BodyTypeBox" Grid.Row="8" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=CarTypeRadio, Path=IsChecked}"></TextBox>
 
         <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Bike Type</Label>
-        <TextBox Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=BikeTypeRadio, Path=IsChecked}"></TextBox>
+        <TextBox x:Name="BikeTypeBox" Grid.Row="9" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=BikeTypeRadio, Path=IsChecked}"></TextBox>
 
         <Label Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Van Type</Label>
-        <TextBox Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=VanTypeRadio, Path=IsChecked}"></TextBox>
+        <TextBox x:Name="VanTypeBox" Grid.Row="10" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=VanTypeRadio, Path=IsChecked}"></TextBox>
 
         <Label Grid.Row="11" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Wheelbase</Label>
-        <TextBox Grid.Row="11" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=VanTypeRadio, Path=IsChecked}"></TextBox>
+        <TextBox x:Name="WheelbaseBox" Grid.Row="11" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100" Margin="5" IsEnabled="{Binding ElementName=VanTypeRadio, Path=IsChecked}"></TextBox>
 
         <Label Grid.Row="12" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Description</Label>
-        <TextBox Grid.Row="12" Grid.Column="1" Grid.RowSpan="2" Margin="5" HorizontalAlignment="Left" MinWidth="100"></TextBox>
+        <TextBox x:Name="DescriptionBox" Grid.Row="12" Grid.Column="1" Grid.RowSpan="2" Margin="5" HorizontalAlignment="Left" MinWidth="100"></TextBox>
 
         <Label Grid.Row="14" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Gray" FontSize="16">Image</Label>
         <Button x:Name="SelectFileBtn" Grid.Row="14" Grid.Column="1" Margin="5" MinWidth="100" Style="{StaticResource BtnStyle}" HorizontalAlignment="Left" Click="SelectFileBtn_Click">Select File</Button>
 
-        <Image Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2"></Image>
+        <Image x:Name="PreviewImg" Grid.Row="15" Grid.Column="0" Grid.ColumnSpan="2"></Image>
 
         <Button x:Name="SaveDetailsBtn" Grid.Row="16" Grid.Column="0" Margin="5" Style="{StaticResource BtnStyle}" Click="SaveDetailsBtn_Click">Save</Button>
         <Button x:Name="CancelBtn" Grid.Row="16" Grid.Column="1" Margin="5" Style="{StaticResource BtnStyle}" Click="CancelBtn_Click">Cancel</Button>
