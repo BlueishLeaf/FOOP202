@@ -18,6 +18,7 @@ namespace FOOP_CA1
         public string[] ComboStrings = { "Make", "Model", "Price", "Mileage" };
         // The dynamic collection of vehicles used throughout the program
         public ObservableCollection<Vehicle> VehicleCollection { get; set; }
+        public JsonSerializerSettings SerializerSettings { get => serializerSettings; set => serializerSettings = value; }
         #endregion
 
         #region Vehicle Creation/Deletion
@@ -75,7 +76,7 @@ namespace FOOP_CA1
         // to determine the Item's vehicle type, then creates an instance of that class using the Item's information
         public ObservableCollection<Vehicle> ParseJsonItems()
         {
-            string json = SelectFile();
+            var json = SelectFile();
             var vehicles = JsonItem.DeserializeJson(json);
             foreach (var vehicle in vehicles)
                 if (vehicle.BodyType != null)
@@ -183,13 +184,13 @@ namespace FOOP_CA1
         #region Adding/Editing Vehicles
         public void AddVehicle(MainWindow main)
         {
-            AddVehicle addVehicle = new AddVehicle { Owner = main };
+            var addVehicle = new AddVehicle { Owner = main };
             addVehicle.ShowDialog();
         }
 
         public void EditVehicle(MainWindow main, Vehicle selectedVehicle)
         {
-            var editVehicle = new EditVehicle(selectedVehicle) { Owner = main};
+            var editVehicle = new EditVehicle(selectedVehicle) { Owner = main };
             editVehicle.ShowDialog();
         }
         #endregion
@@ -206,6 +207,11 @@ namespace FOOP_CA1
             return openFileDialog.ShowDialog() == true ? File.ReadAllText(openFileDialog.FileName) : null;
         }
 
+        private JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
+        {
+            TypeNameHandling = TypeNameHandling.All
+        };
+
         public string SelectImage()
         {
             var openFileDialog = new OpenFileDialog
@@ -213,7 +219,19 @@ namespace FOOP_CA1
                 InitialDirectory = Directory.GetCurrentDirectory(),
                 Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg"
             };
-            return openFileDialog.ShowDialog() == true ? openFileDialog.FileName : null;
+            if (openFileDialog.ShowDialog() == true)
+                File.Copy(openFileDialog.FileName, Path.Combine(GetImageDirectory() + openFileDialog.SafeFileName), true);
+            return "/assets/images/" + openFileDialog.SafeFileName;
+        }
+
+        private string GetImageDirectory()
+        {
+            string currentDir = Directory.GetCurrentDirectory();
+            DirectoryInfo parent = Directory.GetParent(currentDir);
+            DirectoryInfo grandParent = Directory.GetParent(parent.FullName);
+            string imageDirectory = grandParent + "/assets/images/";
+
+            return imageDirectory;
         }
 
         public void SaveDetails(Vehicle newVehicle)

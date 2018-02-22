@@ -27,21 +27,21 @@ namespace FOOP_CA1
             if (selectedVehicle.GetType() == typeof(Car))
             {
                 CarTypeRadio.IsChecked = true;
-                var tempCar = selectedVehicle as Car;
-                BodyTypeBox.Text = tempCar.BodyType.ToString();
+                if (selectedVehicle is Car tempCar) BodyTypeBox.Text = tempCar.BodyType.ToString();
             }
             else if (selectedVehicle.GetType() == typeof(Motorcycle))
             {
                 BikeTypeRadio.IsChecked = true;
-                var tempBike = selectedVehicle as Motorcycle;
-                BikeTypeBox.Text = tempBike.Type.ToString();
+                if (selectedVehicle is Motorcycle tempBike) BikeTypeBox.Text = tempBike.Type.ToString();
             }
             else if (selectedVehicle.GetType() == typeof(Van))
             {
                 VanTypeRadio.IsChecked = true;
-                var tempVan = selectedVehicle as Van;
-                VanTypeBox.Text = tempVan.Type.ToString();
-                WheelbaseBox.Text = tempVan.Wheelbase.ToString();
+                if (selectedVehicle is Van tempVan)
+                {
+                    VanTypeBox.Text = tempVan.Type.ToString();
+                    WheelbaseBox.Text = tempVan.Wheelbase.ToString();
+                }
             }
             MakeBox.Text = selectedVehicle.Make;
             ModelBox.Text = selectedVehicle.Model;
@@ -55,34 +55,45 @@ namespace FOOP_CA1
 
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewVehicle.ImagePath = ((MainWindow)Application.Current.MainWindow)?.AppInstance.SelectImage();
-            PreviewImg.Source = new BitmapImage(new Uri(NewVehicle.ImagePath));
+            MainWindow main = Owner as MainWindow;
+
+            if (main != null)
+            {
+                var path = main.AppInstance.SelectImage();
+                NewVehicle.ImagePath = path;
+                PreviewImg.Source = new BitmapImage(new Uri(NewVehicle.ImagePath, UriKind.Relative));
+            }
+
+
         }
 
         private void SaveDetailsBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewVehicle.Make = MakeBox.Text;
-            NewVehicle.Model = ModelBox.Text;
-            NewVehicle.Price = Convert.ToDecimal(PriceBox.Text);
-            NewVehicle.Year = Convert.ToInt32(YearBox.Text);
-            NewVehicle.Colour = ColourBox.Text;
-            NewVehicle.Mileage = Convert.ToInt32(MileageBox.Text);
-            NewVehicle.Description = DescriptionBox.Text;
+            NewVehicle = new Vehicle
+            {
+                Make = MakeBox.Text,
+                Model = ModelBox.Text,
+                Price = Convert.ToDecimal(PriceBox.Text),
+                Year = Convert.ToInt32(YearBox.Text),
+                Colour = ColourBox.Text,
+                Mileage = Convert.ToInt32(MileageBox.Text),
+                Description = DescriptionBox.Text
+            };
             if (NewVehicle.GetType() == typeof(Car))
             {
-                var tempCar = NewVehicle as Car;
-                tempCar.BodyType = (BodyType)Enum.Parse(typeof(BodyType), BodyTypeBox.Text);
+                if (NewVehicle is Car tempCar) tempCar.BodyType = (BodyType) Enum.Parse(typeof(BodyType), BodyTypeBox.Text);
             }
             else if (NewVehicle.GetType() == typeof(Motorcycle))
             {
-                var tempBike = NewVehicle as Motorcycle;
-                tempBike.Type = (BikeType)Enum.Parse(typeof(BikeType), BikeTypeBox.Text);
+                if (NewVehicle is Motorcycle tempBike) tempBike.Type = (BikeType) Enum.Parse(typeof(BikeType), BikeTypeBox.Text);
             }
             else if (NewVehicle.GetType() == typeof(Van))
             {
-                var tempVan = NewVehicle as Van;
-                tempVan.Type = (VanType)Enum.Parse(typeof(VanType), VanTypeBox.Text);
-                tempVan.Wheelbase = (Wheelbase)Enum.Parse(typeof(Wheelbase), WheelbaseBox.Text);
+                if (NewVehicle is Van tempVan)
+                {
+                    tempVan.Type = (VanType) Enum.Parse(typeof(VanType), VanTypeBox.Text);
+                    tempVan.Wheelbase = (Wheelbase) Enum.Parse(typeof(Wheelbase), WheelbaseBox.Text);
+                }
             }
             ((MainWindow)Application.Current.MainWindow)?.AppInstance.SaveDetails(NewVehicle);
             Close();
