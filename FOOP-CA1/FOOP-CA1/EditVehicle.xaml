@@ -50,17 +50,17 @@
             <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                 <Image Source="assets/icons/caricon.PNG" Height="25" Width="30" />
-                <RadioButton x:Name="CarTypeRadio" Foreground="Gray" GroupName="types" IsEnabled="False">Car</RadioButton>
+                <RadioButton x:Name="CarTypeRadio" Foreground="Gray" GroupName="types">Car</RadioButton>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                 <Image Source="assets/icons/bikeicon.PNG" Height="25" Width="30" />
-                <RadioButton x:Name="BikeTypeRadio" Foreground="Gray" GroupName="types" IsEnabled="False">Bike</RadioButton>
+                <RadioButton x:Name="BikeTypeRadio" Foreground="Gray" GroupName="types">Bike</RadioButton>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                 <Image Source="assets/icons/vanicon.PNG" Height="25" Width="30" />
-                <RadioButton x:Name="VanTypeRadio" Foreground="Gray" GroupName="types" IsEnabled="False">Van</RadioButton>
+                <RadioButton x:Name="VanTypeRadio" Foreground="Gray" GroupName="types">Van</RadioButton>
             </StackPanel>
         </Grid>
 

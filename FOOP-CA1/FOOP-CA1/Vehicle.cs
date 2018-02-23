@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Resources;
 using System.Windows.Media.Imaging;
 
 namespace FOOP_CA1
@@ -57,10 +58,14 @@ namespace FOOP_CA1
         // GenericImage is the icon representing Car, a Motorcycle, or a Van
         public BitmapImage GenericImage { get; set; }
         public string ImagePath { get; set; }
+
         #endregion
 
         // Creates a BitmapImage from the ImagePath and returns it
-        public BitmapImage GetImage() => new BitmapImage(new Uri(ImagePath, UriKind.Relative));
+        public BitmapImage GetImage()
+        {
+            return new BitmapImage(new Uri(ImagePath, UriKind.Relative));
+        }
     }
 
     #region Children

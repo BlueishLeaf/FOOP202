@@ -184,8 +184,8 @@ namespace FOOP_CA1
         #region Adding/Editing Vehicles
         public void AddVehicle(MainWindow main)
         {
-            var addVehicle = new AddVehicle { Owner = main };
-            addVehicle.ShowDialog();
+            //var addVehicle = new AddVehicle { Owner = main };
+            //addVehicle.ShowDialog();
         }
 
         public void EditVehicle(MainWindow main, Vehicle selectedVehicle)
@@ -224,13 +224,12 @@ namespace FOOP_CA1
             return "/assets/images/" + openFileDialog.SafeFileName;
         }
 
-        private string GetImageDirectory()
+        private static string GetImageDirectory()
         {
-            string currentDir = Directory.GetCurrentDirectory();
-            DirectoryInfo parent = Directory.GetParent(currentDir);
-            DirectoryInfo grandParent = Directory.GetParent(parent.FullName);
-            string imageDirectory = grandParent + "/assets/images/";
-
+            var currentDir = Directory.GetCurrentDirectory();
+            var parent = Directory.GetParent(currentDir);
+            var grandParent = Directory.GetParent(parent.FullName);
+            var imageDirectory = grandParent + "/assets/images/";
             return imageDirectory;
         }
 
