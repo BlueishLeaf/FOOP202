@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
+using Uri = System.Uri;
 
 namespace FOOP_CA1
 {
@@ -26,78 +28,84 @@ namespace FOOP_CA1
         public EditVehicle(Vehicle selectedVehicle)
         {
             InitializeComponent();
-            if (selectedVehicle!=null)
+            BodyTypeCombo.ItemsSource = Enum.GetValues(typeof(BodyType));
+            BikeTypeCombo.ItemsSource = Enum.GetValues(typeof(BikeType));
+            VanTypeCombo.ItemsSource = Enum.GetValues(typeof(VanType));
+            WheelbaseCombo.ItemsSource = Enum.GetValues(typeof(Wheelbase));
+            ColourPicker.ColorMode = ColorMode.ColorCanvas;
+            if (selectedVehicle == null) return;
+            CarTypeRadio.IsEnabled = false;
+            VanTypeRadio.IsEnabled = false;
+            BikeTypeRadio.IsEnabled = false;
+            if (selectedVehicle.GetType() == typeof(Car))
             {
-                CarTypeRadio.IsEnabled = false;
-                VanTypeRadio.IsEnabled = false;
-                BikeTypeRadio.IsEnabled = false;
-                if (selectedVehicle.GetType() == typeof(Car))
-                {
-                    CarTypeRadio.IsChecked = true;
-                    if (selectedVehicle is Car tempCar) BodyTypeBox.Text = tempCar.BodyType.ToString();
-                }
-                else if (selectedVehicle.GetType() == typeof(Motorcycle))
-                {
-                    BikeTypeRadio.IsChecked = true;
-                    if (selectedVehicle is Motorcycle tempBike) BikeTypeBox.Text = tempBike.Type.ToString();
-                }
-                else if (selectedVehicle.GetType() == typeof(Van))
-                {
-                    VanTypeRadio.IsChecked = true;
-                    if (selectedVehicle is Van tempVan)
-                    {
-                        VanTypeBox.Text = tempVan.Type.ToString();
-                        WheelbaseBox.Text = tempVan.Wheelbase.ToString();
-                    }
-                }
-                MakeBox.Text = selectedVehicle.Make;
-                ModelBox.Text = selectedVehicle.Model;
-                PriceBox.Text = selectedVehicle.Price.ToString(CultureInfo.InvariantCulture);
-                YearBox.Text = selectedVehicle.Year.ToString();
-                ColourBox.Text = selectedVehicle.Colour;
-                MileageBox.Text = selectedVehicle.Mileage.ToString();
-                DescriptionBox.Text = selectedVehicle.Description;
-                NewVehicle = selectedVehicle;
+                CarTypeRadio.IsChecked = true;
+                if (selectedVehicle is Car tempCar) BodyTypeCombo.SelectedItem = tempCar.BodyType;
             }
+            else if (selectedVehicle.GetType() == typeof(Motorcycle))
+            {
+                BikeTypeRadio.IsChecked = true;
+                if (selectedVehicle is Motorcycle tempBike) BikeTypeCombo.SelectedItem = tempBike.Type;
+            }
+            else if (selectedVehicle.GetType() == typeof(Van))
+            {
+                VanTypeRadio.IsChecked = true;
+                if (selectedVehicle is Van tempVan)
+                {
+                    VanTypeCombo.SelectedItem = tempVan.Type;
+                    WheelbaseCombo.SelectedItem = tempVan.Wheelbase;
+                }
+            }
+            MakeBox.Text = selectedVehicle.Make;
+            ModelBox.Text = selectedVehicle.Model;
+            PriceBox.Text = selectedVehicle.Price.ToString(CultureInfo.InvariantCulture);
+            YearBox.Text = selectedVehicle.Year.ToString();
+            ColourPicker.SelectedColor = (Color?)ColorConverter.ConvertFromString(selectedVehicle.Colour);
+            MileageBox.Text = selectedVehicle.Mileage.ToString();
+            DescriptionBox.Text = selectedVehicle.Description;
+            _imagePath = selectedVehicle.ImagePath;
+            PreviewImg.Source = new BitmapImage(new Uri(_imagePath, UriKind.Relative));
+            NewVehicle = selectedVehicle;
         }
 
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!(Owner is MainWindow main)) return;
             _imagePath = main.AppInstance.SelectImage();
-            
+            PreviewImg.Source = new BitmapImage(new Uri(_imagePath, UriKind.Relative)); ;
         }
 
         private void SaveDetailsBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (CarTypeRadio.IsChecked == true)
+                NewVehicle = new Car
+                {
+                    BodyType = (BodyType)Enum.Parse(typeof(BodyType), BodyTypeCombo.SelectedItem.ToString())
+                };
+            else if (BikeTypeRadio.IsChecked == true)
+                NewVehicle = new Motorcycle
+                {
+                    Type = (BikeType)Enum.Parse(typeof(BikeType), BikeTypeCombo.SelectedItem.ToString())
+                };
+            else if (VanTypeRadio.IsChecked == true)
+                NewVehicle = new Van
+                {
+                    Type = (VanType)Enum.Parse(typeof(VanType), VanTypeCombo.SelectedItem.ToString()),
+                    Wheelbase = (Wheelbase)Enum.Parse(typeof(Wheelbase), WheelbaseCombo.SelectedItem.ToString())
+                };
+
             NewVehicle.Make = MakeBox.Text;
             NewVehicle.Make = MakeBox.Text;
             NewVehicle.Model = ModelBox.Text;
             NewVehicle.Price = Convert.ToDecimal(PriceBox.Text);
             NewVehicle.Year = Convert.ToInt32(YearBox.Text);
-            NewVehicle.Colour = ColourBox.Text;
+            NewVehicle.Colour = ColourPicker.SelectedColorText;
             NewVehicle.Mileage = Convert.ToInt32(MileageBox.Text);
             NewVehicle.Description = DescriptionBox.Text;
             if (_imagePath != null)
                 NewVehicle.ImagePath = _imagePath;
-
-            if (NewVehicle.GetType() == typeof(Car))
-            {
-                if (NewVehicle is Car tempCar) tempCar.BodyType = (BodyType) Enum.Parse(typeof(BodyType), BodyTypeBox.Text);
-            }
-            else if (NewVehicle.GetType() == typeof(Motorcycle))
-            {
-                if (NewVehicle is Motorcycle tempBike) tempBike.Type = (BikeType) Enum.Parse(typeof(BikeType), BikeTypeBox.Text);
-            }
-            else if (NewVehicle.GetType() == typeof(Van))
-            {
-                if (NewVehicle is Van tempVan)
-                {
-                    tempVan.Type = (VanType) Enum.Parse(typeof(VanType), VanTypeBox.Text);
-                    tempVan.Wheelbase = (Wheelbase) Enum.Parse(typeof(Wheelbase), WheelbaseBox.Text);
-                }
-            }
-            ((MainWindow)Application.Current.MainWindow)?.AppInstance.SaveDetails(NewVehicle);
+            if (!(Owner is MainWindow main)) return;
+            main.AppInstance.SaveDetails(NewVehicle);
             Close();
         }
 

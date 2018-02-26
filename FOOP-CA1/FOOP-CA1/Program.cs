@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,6 @@ namespace FOOP_CA1
         public string[] ComboStrings = { "Make", "Model", "Price", "Mileage" };
         // The dynamic collection of vehicles used throughout the program
         public ObservableCollection<Vehicle> VehicleCollection { get; set; }
-        public JsonSerializerSettings SerializerSettings { get => serializerSettings; set => serializerSettings = value; }
         #endregion
 
         #region Vehicle Creation/Deletion
@@ -38,6 +38,7 @@ namespace FOOP_CA1
                 Colour = "green",
                 BodyType = BodyType.Convertible,
                 ImagePath = "/assets/images/c1.png"
+               
             },
             new Motorcycle
             {
@@ -76,8 +77,7 @@ namespace FOOP_CA1
         // to determine the Item's vehicle type, then creates an instance of that class using the Item's information
         public ObservableCollection<Vehicle> ParseJsonItems()
         {
-            var json = SelectFile();
-            var vehicles = JsonItem.DeserializeJson(json);
+            var vehicles = JsonItem.DeserializeJson(SelectJson());
             foreach (var vehicle in vehicles)
                 if (vehicle.BodyType != null)
                     VehicleCollection.Add(new Car
@@ -126,8 +126,17 @@ namespace FOOP_CA1
         // folder names "savedVehicles.json"
         public void SaveToJson()
         {
-            using (var writer = new StreamWriter("savedVehicles.json"))
-                writer.Write(JsonConvert.SerializeObject(VehicleCollection, Formatting.Indented));
+            var saveFileDialog = new SaveFileDialog
+            {
+                FileName = "Vehicle Data",
+                Filter = "Json files (*.json)|*.json",
+                DefaultExt = ".json"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, JsonItem.SerializeJson(VehicleCollection));
+            }
         }
         #endregion
 
@@ -184,20 +193,21 @@ namespace FOOP_CA1
         #region Adding/Editing Vehicles
         public void AddVehicle(MainWindow main)
         {
-            //var addVehicle = new AddVehicle { Owner = main };
-            //addVehicle.ShowDialog();
+            var addVehicle = new EditVehicle(null) { Owner = main };
+            addVehicle.ShowDialog();
         }
 
         public void EditVehicle(MainWindow main, Vehicle selectedVehicle)
         {
             var editVehicle = new EditVehicle(selectedVehicle) { Owner = main };
             editVehicle.ShowDialog();
+            VehicleCollection.Remove(selectedVehicle);
         }
         #endregion
 
         // Opens up a file explorer for the user to select either a json file or an image depending
         // on the argument. The explorer is filtered so that only files of a suitable type can be selected
-        public string SelectFile()
+        public string SelectJson()
         {
             var openFileDialog = new OpenFileDialog
             {
@@ -206,11 +216,6 @@ namespace FOOP_CA1
             };
             return openFileDialog.ShowDialog() == true ? File.ReadAllText(openFileDialog.FileName) : null;
         }
-
-        private JsonSerializerSettings serializerSettings = new JsonSerializerSettings()
-        {
-            TypeNameHandling = TypeNameHandling.All
-        };
 
         public string SelectImage()
         {
@@ -226,7 +231,6 @@ namespace FOOP_CA1
 
         public void SaveDetails(Vehicle newVehicle)
         {
-            VehicleCollection.Remove(newVehicle);
             VehicleCollection.Add(newVehicle);
         }
 

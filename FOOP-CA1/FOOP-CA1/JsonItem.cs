@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using Newtonsoft.Json;
 
 namespace FOOP_CA1
@@ -27,5 +29,10 @@ namespace FOOP_CA1
         // JSON is passed in and deserialised into a list of JsonItems.
         // Uses a lamda expression
         public static List<JsonItem> DeserializeJson(string json) => JsonConvert.DeserializeObject<List<JsonItem>>(json);
+
+        public static string SerializeJson(ObservableCollection<Vehicle> collection)
+        {
+                return JsonConvert.SerializeObject(collection, Formatting.Indented);
+        }
     }
 }

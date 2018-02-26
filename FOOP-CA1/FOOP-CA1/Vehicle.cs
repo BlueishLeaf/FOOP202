@@ -73,7 +73,7 @@ namespace FOOP_CA1
     internal class Car : Vehicle
     {
         public BodyType BodyType { get; set; }
-
+        
         // The constructor assigns the car icon to the GenericImage property
         public Car() => GenericImage = new BitmapImage(new Uri(@"\assets\icons\caricon.png", UriKind.Relative));
 
