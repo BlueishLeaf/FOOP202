@@ -220,17 +220,8 @@ namespace FOOP_CA1
                 Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg"
             };
             if (openFileDialog.ShowDialog() == true)
-                File.Copy(openFileDialog.FileName, Path.Combine(GetImageDirectory() + openFileDialog.SafeFileName), true);
-            return "/assets/images/" + openFileDialog.SafeFileName;
-        }
-
-        private static string GetImageDirectory()
-        {
-            var currentDir = Directory.GetCurrentDirectory();
-            var parent = Directory.GetParent(currentDir);
-            var grandParent = Directory.GetParent(parent.FullName);
-            var imageDirectory = grandParent + "/assets/images/";
-            return imageDirectory;
+                return "/assets/images/" + openFileDialog.SafeFileName;
+            return null;
         }
 
         public void SaveDetails(Vehicle newVehicle)
