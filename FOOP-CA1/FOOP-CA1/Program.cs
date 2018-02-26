@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Windows;
-using System.Windows.Media.Imaging;
 using Microsoft.Win32;
-using Newtonsoft.Json;
 
 namespace FOOP_CA1
 {

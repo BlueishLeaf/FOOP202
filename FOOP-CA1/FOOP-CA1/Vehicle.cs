@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Resources;
 using System.Windows.Media.Imaging;
 
 namespace FOOP_CA1
