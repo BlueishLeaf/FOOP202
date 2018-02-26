@@ -14,8 +14,15 @@ namespace FOOP_CA1
     /// </summary>
     public partial class EditVehicle
     {
+        #region Properties
         public Vehicle NewVehicle { get; set; }
+        // For the preview
         private string _imagePath;
+        #endregion
+
+        #region OnLoadLogic
+        // Constructor sets the item sources of the combo box and sets the values of the relevant fields if it detects that
+        // there was a valid selectedVehicle passed in. 
         public EditVehicle(Vehicle selectedVehicle)
         {
             InitializeComponent();
@@ -25,9 +32,11 @@ namespace FOOP_CA1
             WheelbaseCombo.ItemsSource = Enum.GetValues(typeof(Wheelbase));
             ColourPicker.ColorMode = ColorMode.ColorCanvas;
             if (selectedVehicle == null) return;
+            // Disabling ability to change the type if editing a vehicle
             CarTypeRadio.IsEnabled = false;
             VanTypeRadio.IsEnabled = false;
             BikeTypeRadio.IsEnabled = false;
+            // Figure out the type of vehicle selectedVehicle is and retrieve its type-specific property
             if (selectedVehicle.GetType() == typeof(Car))
             {
                 CarTypeRadio.IsChecked = true;
@@ -58,16 +67,24 @@ namespace FOOP_CA1
             PreviewImg.Source = new BitmapImage(new Uri(_imagePath, UriKind.Relative));
             NewVehicle = selectedVehicle;
         }
+        #endregion
 
+        #region ButtonEvents
+        // The preview image below and the color selection are my Additional Features
+        // Sets the imagePath field as well as displays a preview of what it will look like
         private void SelectFileBtn_Click(object sender, RoutedEventArgs e)
         {
+            // Check to make sure Owner is of type MainWindow and is not null
             if (!(Owner is MainWindow main)) return;
             _imagePath = main.AppInstance.SelectImage();
             PreviewImg.Source = new BitmapImage(new Uri(_imagePath, UriKind.Relative));
         }
 
+        // Instantiates the correct type of vehicle based on what radio button is checked. If the user is editing a vehicle
+        // then NewVehicle overrites the old one in the collection
         private void SaveDetailsBtn_Click(object sender, RoutedEventArgs e)
         {
+            // Assigning the extra options(bodytype,vantype,etc) of the vehicle depending on what type it is
             if (CarTypeRadio.IsChecked == true)
                 NewVehicle = new Car
                 {
@@ -93,16 +110,20 @@ namespace FOOP_CA1
             NewVehicle.Colour = ColourPicker.SelectedColorText;
             NewVehicle.Mileage = Convert.ToInt32(MileageBox.Text);
             NewVehicle.Description = DescriptionBox.Text;
+            // Check to make sure imagePath is not null before assigning it
             if (_imagePath != null)
                 NewVehicle.ImagePath = _imagePath;
+            // Check to make sure Owner is of type MainWindow and is not null
             if (!(Owner is MainWindow main)) return;
             main.AppInstance.SaveDetails(NewVehicle);
             Close();
         }
 
-        private void CancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        // Closes EditWindow without saving any changes
+        private void CancelBtn_Click(object sender, RoutedEventArgs e) => Close();
+        #endregion
+
+
+
     }
 }

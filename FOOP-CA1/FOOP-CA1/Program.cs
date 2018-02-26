@@ -11,9 +11,10 @@ namespace FOOP_CA1
     {
         #region Properties
         // The options available in the "sort by" combo box
-        public string[] ComboStrings = { "Make", "Model", "Price", "Mileage" };
+        public string[] ComboStrings = { "Colour", "Make", "Model", "Price", "Mileage" };
         // The dynamic collection of vehicles used throughout the program
         public ObservableCollection<Vehicle> VehicleCollection { get; set; }
+
         #endregion
 
         #region Vehicle Creation/Deletion
@@ -33,7 +34,7 @@ namespace FOOP_CA1
                 Colour = "green",
                 BodyType = BodyType.Convertible,
                 ImagePath = "/assets/images/c1.png"
-               
+
             },
             new Motorcycle
             {
@@ -63,10 +64,23 @@ namespace FOOP_CA1
         };
 
         // Removes the selected item passed into the method
+        // Must be viewing all vehicles to remove an item(i.e. do not sort, filtering is fine)
         public void DeleteItem(Vehicle selectedItem) => VehicleCollection.Remove(selectedItem);
         #endregion
 
         #region JSON
+        // Opens up a file explorer for the user to select either a json file or an image depending
+        // on the argument. The explorer is filtered so that only files of a suitable type can be selected
+        public string SelectJson()
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = Directory.GetCurrentDirectory(),
+                Filter = "Json files (*.json)|*.json"
+            };
+            return openFileDialog.ShowDialog() == true ? File.ReadAllText(openFileDialog.FileName) : null;
+        }
+
         // Reads in the JSON from a file and passes the string to the deserializer class.
         // Loops through the JsonItem list and checks what nullable properties are not null
         // to determine the Item's vehicle type, then creates an instance of that class using the Item's information
@@ -117,8 +131,7 @@ namespace FOOP_CA1
             return VehicleCollection;
         }
 
-        // Simple method to write the current collection of vehicles to a file in the debug
-        // folder names "savedVehicles.json"
+        // Opens file saving dialog. Serializes json when user chooses where to save
         public void SaveToJson()
         {
             var saveFileDialog = new SaveFileDialog
@@ -142,6 +155,8 @@ namespace FOOP_CA1
         {
             switch (arg)
             {
+                case "Colour":
+                    return VehicleCollection.OrderBy(a => a.Colour);
                 case "Make":
                     return VehicleCollection.OrderBy(a => a.Make);
                 case "Model":
@@ -186,32 +201,28 @@ namespace FOOP_CA1
         #endregion
 
         #region Adding/Editing Vehicles
+        // Creates a new EditVehicle window but passes in null, indicating that this vehicle should be
+        // set up as a new one
         public void AddVehicle(MainWindow main)
         {
             var addVehicle = new EditVehicle(null) { Owner = main };
             addVehicle.ShowDialog();
         }
 
+        // Creates a new EditVehicle window and passes in the selected vehicle, allowing the EditWindow instance
+        // to have access to its data
         public void EditVehicle(MainWindow main, Vehicle selectedVehicle)
         {
             var editVehicle = new EditVehicle(selectedVehicle) { Owner = main };
             editVehicle.ShowDialog();
-            VehicleCollection.Remove(selectedVehicle);
-        }
-        #endregion
-
-        // Opens up a file explorer for the user to select either a json file or an image depending
-        // on the argument. The explorer is filtered so that only files of a suitable type can be selected
-        public string SelectJson()
-        {
-            var openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = Directory.GetCurrentDirectory(),
-                Filter = "Json files (*.json)|*.json"
-            };
-            return openFileDialog.ShowDialog() == true ? File.ReadAllText(openFileDialog.FileName) : null;
+            // Removes the edited vehicle if changes were saved
+            if (editVehicle.NewVehicle != selectedVehicle)
+                VehicleCollection.Remove(selectedVehicle);
         }
 
+        // Called from within the EditVehicle window. Opens an OpenFileDialog and lets the user
+        // choose an image.
+        // *NB* please choose an image from the /assets/images folder as they are the only images marked as resources
         public string SelectImage()
         {
             var openFileDialog = new OpenFileDialog
@@ -224,10 +235,10 @@ namespace FOOP_CA1
             return null;
         }
 
-        public void SaveDetails(Vehicle newVehicle)
-        {
-            VehicleCollection.Add(newVehicle);
-        }
+        // Adds the new/edited vehicle to the main vehicle collection
+        public void SaveDetails(Vehicle newVehicle) => VehicleCollection.Add(newVehicle);
+        #endregion
+
 
     }
 }

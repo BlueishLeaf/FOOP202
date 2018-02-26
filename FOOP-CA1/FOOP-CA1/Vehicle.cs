@@ -44,7 +44,7 @@ namespace FOOP_CA1
     #endregion
 
     // This class contains all the methods and properties of a vehicle as well as its children
-    public class Vehicle
+    public abstract class Vehicle
     {
         #region Vehicle Properties
         public string Make { get; set; }
