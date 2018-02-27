@@ -205,7 +205,7 @@ namespace FOOP_CA1
         // set up as a new one
         public void AddVehicle(MainWindow main)
         {
-            var addVehicle = new EditVehicle(null) { Owner = main };
+            var addVehicle = new EditVehicle { Owner = main };
             addVehicle.ShowDialog();
         }
 

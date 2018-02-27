@@ -118,7 +118,7 @@
                       VerticalAlignment="Center" SelectionChanged="SortCombo_SelectionChanged" />
         </StackPanel>
         <ListBox x:Name="CarList" Grid.Row="2" Grid.Column="0" Margin="10" SelectionChanged="CarList_SelectionChanged"
-                 ItemTemplate="{ StaticResource ListboxTemplate}" Background="#252839" />
+                 ItemTemplate="{ StaticResource ListboxTemplate}" HorizontalContentAlignment="Stretch" Background="#252839" />
 
         <Grid Grid.Row="2" Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
