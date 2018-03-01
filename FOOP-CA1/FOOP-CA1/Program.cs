@@ -5,6 +5,8 @@ using Microsoft.Win32;
 
 namespace FOOP_CA1
 {
+    // NOTE: When loading the json, select the file "samplevehicles.json" in the root directory
+    // and make sure the nuget packages installed (one for the json, the other is for the colour picker)
     // This class is the control class of the program. It handles
     // most of the non-UI logic in the application
     public class Program
