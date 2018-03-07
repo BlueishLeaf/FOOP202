@@ -23,7 +23,7 @@ namespace FOOP_CA1
         #region OnLoadLogic
         // Constructor sets the item sources of the combo box and sets the values of the relevant fields if it detects that
         // there was a valid selectedVehicle passed in. 
-        public EditVehicle(Vehicle selectedVehicle)
+        public EditVehicle(Vehicle selectedVehicle = null)
         {
             InitializeComponent();
             BodyTypeCombo.ItemsSource = Enum.GetValues(typeof(BodyType));
