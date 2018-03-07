@@ -142,9 +142,7 @@ namespace FOOP_CA1
             };
 
             if (saveFileDialog.ShowDialog() == true)
-            {
                 File.WriteAllText(saveFileDialog.FileName, JsonItem.SerializeJson(VehicleCollection));
-            }
         }
         #endregion
 
