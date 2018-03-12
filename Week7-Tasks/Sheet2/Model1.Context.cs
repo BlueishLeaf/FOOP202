@@ -13,10 +13,10 @@ namespace Sheet2
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NORTHWNDEntities : DbContext
+    public partial class NORTHWNDEntities1 : DbContext
     {
-        public NORTHWNDEntities()
-            : base("name=NORTHWNDEntities")
+        public NORTHWNDEntities1()
+            : base("name=NORTHWNDEntities1")
         {
         }
     

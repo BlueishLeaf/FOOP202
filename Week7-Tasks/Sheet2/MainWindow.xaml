@@ -8,13 +8,112 @@
         Title="MainWindow" Height="450" Width="800">
     <TabControl TabStripPlacement="Top">
         <TabItem Name="Ex1" Header="Ex1" Width="50">
-            <Grid>
+            <Grid Margin="0,-1,0,1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="90"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button Name="Qry1" Width="75" Height="25" Click="Qry1_Click">Query</Button>
-                <ListBox Name="DataBox" Grid.Row="1" Grid.Column="0"></ListBox>
+                <Button Name="Qry1" Width="75" Height="25" Click="Qry1_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox1" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex2" Header="Ex2" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry2" Width="75" Height="25" Click="Qry2_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox2" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex3" Header="Ex3" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry3" Width="75" Height="25" Click="Qry3_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox3" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex4" Header="Ex4" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry4" Width="75" Height="25" Click="Qry4_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox4" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex5" Header="Ex5" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry5" Width="75" Height="25" Click="Qry5_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox5" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex6" Header="Ex6" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry6" Width="75" Height="25" Click="Qry6_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox6" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex7" Header="Ex7" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry7" Width="75" Height="25" Click="Qry7_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox7" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex8" Header="Ex8" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry8" Width="75" Height="25" Click="Qry8_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox8" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex9" Header="Ex9" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry9" Width="75" Height="25" Click="Qry9_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox9" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
+
+            </Grid>
+        </TabItem>
+        <TabItem Name="Ex10" Header="Ex10" Width="50">
+            <Grid Margin="0,-1,0,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="Qry10" Width="75" Height="25" Click="Qry10_Click" Margin="357,10,354,56" Grid.Row="1">Query</Button>
+                <ListBox Name="DataBox10" Grid.Row="1" Grid.Column="0" Margin="0,41,0,-41"></ListBox>
 
             </Grid>
         </TabItem>
