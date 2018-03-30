@@ -33,17 +33,25 @@ namespace Week8_Tasks
         private void StockLevelBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedOption = StockLevelBox.SelectedItem;
-
+            switch (selectedOption)
+            {
+                case "Low":
+                    ProductsBox.ItemsSource = _appInstance.FilterByStock(Program.StockLevel.Low);
+                    break;
+                case "Normal":
+                    ProductsBox.ItemsSource = _appInstance.FilterByStock(Program.StockLevel.Normal);
+                    break;
+                case "Overstocked":
+                    ProductsBox.ItemsSource = _appInstance.FilterByStock(Program.StockLevel.Overstocked);
+                    break;
+            }
         }
 
-        private void SuppliersBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        private void SuppliersBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => ProductsBox.ItemsSource = _appInstance.FilterBySupplier(SuppliersBox.SelectedItem.ToString());
 
         private void CountryBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ProductsBox.ItemsSource = _appInstance.FilterByCountry(CountryBox.SelectedItem.ToString());
         }
     }
 }
