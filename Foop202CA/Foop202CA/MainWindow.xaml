@@ -1,0 +1,41 @@
+﻿<Window x:Class="Foop202CA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Foop202CA"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Products</Label>
+        <Label Grid.Column="1" Grid.Row="0" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center">Order Details</Label>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Num of Orders:</Label>
+            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Total Order Value:</Label>
+            <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Order Average:</Label>
+            <TextBlock x:Name="numOrdersBlock" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="totalValueBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="orderAvgBlock" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"></TextBlock>
+        </Grid>
+        <ListBox SelectedValuePath="ProductID" x:Name="ProductBox" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" SelectionChanged="ProductBox_SelectionChanged"></ListBox>
+        <DataGrid x:Name="OrderGrid" Grid.Column="1" Grid.Row="2"></DataGrid>
+    </Grid>
+</Window>
