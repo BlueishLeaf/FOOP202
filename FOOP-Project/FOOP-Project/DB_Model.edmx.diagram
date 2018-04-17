@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="836a5e92f93f41c2b9231e59ae10561c" Name="Diagram1">
+        <EntityTypeShape EntityType="GiftAppDBModel.EventTbl" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiftAppDBModel.GiftTbl" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiftAppDBModel.PersonTbl" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GiftAppDBModel.UserTbl" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="GiftAppDBModel.FK_EventTbl_PersonTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GiftAppDBModel.FK_GiftTbl_EventTbl" ManuallyRouted="false" />
+        <AssociationConnector Association="GiftAppDBModel.FK_PersonTbl_UserTbl" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

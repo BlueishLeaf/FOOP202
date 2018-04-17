@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GiftAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EventTbl">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="EventDate" Type="date" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GiftTbl">
+          <Key>
+            <PropertyRef Name="GiftId" />
+          </Key>
+          <Property Name="GiftId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GiftName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="GiftPrice" Type="smallmoney" />
+        </EntityType>
+        <EntityType Name="PersonTbl">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="PersonName" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="PersonDOB" Type="date" Nullable="false" />
+          <Property Name="PersonGender" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTbl">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="char" MaxLength="20" />
+          <Property Name="UserPassword" Type="char" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_EventTbl_PersonTbl">
+          <End Role="PersonTbl" Type="Self.PersonTbl" Multiplicity="1" />
+          <End Role="EventTbl" Type="Self.EventTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonTbl">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="EventTbl">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GiftTbl_EventTbl">
+          <End Role="EventTbl" Type="Self.EventTbl" Multiplicity="1" />
+          <End Role="GiftTbl" Type="Self.GiftTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventTbl">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="GiftTbl">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonTbl_UserTbl">
+          <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="1" />
+          <End Role="PersonTbl" Type="Self.PersonTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTbl">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PersonTbl">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GiftAppDBModelStoreContainer">
+          <EntitySet Name="EventTbl" EntityType="Self.EventTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GiftTbl" EntityType="Self.GiftTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonTbl" EntityType="Self.PersonTbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTbl" EntityType="Self.UserTbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EventTbl_PersonTbl" Association="Self.FK_EventTbl_PersonTbl">
+            <End Role="PersonTbl" EntitySet="PersonTbl" />
+            <End Role="EventTbl" EntitySet="EventTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GiftTbl_EventTbl" Association="Self.FK_GiftTbl_EventTbl">
+            <End Role="EventTbl" EntitySet="EventTbl" />
+            <End Role="GiftTbl" EntitySet="GiftTbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonTbl_UserTbl" Association="Self.FK_PersonTbl_UserTbl">
+            <End Role="UserTbl" EntitySet="UserTbl" />
+            <End Role="PersonTbl" EntitySet="PersonTbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GiftAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EventTbl">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PersonTbl" Relationship="Self.FK_EventTbl_PersonTbl" FromRole="EventTbl" ToRole="PersonTbl" />
+          <NavigationProperty Name="GiftTbls" Relationship="Self.FK_GiftTbl_EventTbl" FromRole="EventTbl" ToRole="GiftTbl" />
+        </EntityType>
+        <EntityType Name="GiftTbl">
+          <Key>
+            <PropertyRef Name="GiftId" />
+          </Key>
+          <Property Name="GiftId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GiftName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="GiftPrice" Type="Decimal" Precision="10" Scale="4" />
+          <NavigationProperty Name="EventTbl" Relationship="Self.FK_GiftTbl_EventTbl" FromRole="GiftTbl" ToRole="EventTbl" />
+        </EntityType>
+        <EntityType Name="PersonTbl">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PersonName" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PersonDOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PersonGender" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EventTbls" Relationship="Self.FK_EventTbl_PersonTbl" FromRole="PersonTbl" ToRole="EventTbl" />
+          <NavigationProperty Name="UserTbl" Relationship="Self.FK_PersonTbl_UserTbl" FromRole="PersonTbl" ToRole="UserTbl" />
+        </EntityType>
+        <EntityType Name="UserTbl">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="PersonTbls" Relationship="Self.FK_PersonTbl_UserTbl" FromRole="UserTbl" ToRole="PersonTbl" />
+        </EntityType>
+        <Association Name="FK_EventTbl_PersonTbl">
+          <End Role="PersonTbl" Type="Self.PersonTbl" Multiplicity="1" />
+          <End Role="EventTbl" Type="Self.EventTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonTbl">
+              <PropertyRef Name="PersonId" />
+            </Principal>
+            <Dependent Role="EventTbl">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GiftTbl_EventTbl">
+          <End Role="EventTbl" Type="Self.EventTbl" Multiplicity="1" />
+          <End Role="GiftTbl" Type="Self.GiftTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventTbl">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="GiftTbl">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonTbl_UserTbl">
+          <End Role="UserTbl" Type="Self.UserTbl" Multiplicity="1" />
+          <End Role="PersonTbl" Type="Self.PersonTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTbl">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="PersonTbl">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GiftAppDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EventTbls" EntityType="Self.EventTbl" />
+          <EntitySet Name="GiftTbls" EntityType="Self.GiftTbl" />
+          <EntitySet Name="PersonTbls" EntityType="Self.PersonTbl" />
+          <EntitySet Name="UserTbls" EntityType="Self.UserTbl" />
+          <AssociationSet Name="FK_EventTbl_PersonTbl" Association="Self.FK_EventTbl_PersonTbl">
+            <End Role="PersonTbl" EntitySet="PersonTbls" />
+            <End Role="EventTbl" EntitySet="EventTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GiftTbl_EventTbl" Association="Self.FK_GiftTbl_EventTbl">
+            <End Role="EventTbl" EntitySet="EventTbls" />
+            <End Role="GiftTbl" EntitySet="GiftTbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonTbl_UserTbl" Association="Self.FK_PersonTbl_UserTbl">
+            <End Role="UserTbl" EntitySet="UserTbls" />
+            <End Role="PersonTbl" EntitySet="PersonTbls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GiftAppDBModelStoreContainer" CdmEntityContainer="GiftAppDBEntities">
+          <EntitySetMapping Name="EventTbls">
+            <EntityTypeMapping TypeName="GiftAppDBModel.EventTbl">
+              <MappingFragment StoreEntitySet="EventTbl">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GiftTbls">
+            <EntityTypeMapping TypeName="GiftAppDBModel.GiftTbl">
+              <MappingFragment StoreEntitySet="GiftTbl">
+                <ScalarProperty Name="GiftId" ColumnName="GiftId" />
+                <ScalarProperty Name="GiftName" ColumnName="GiftName" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="GiftPrice" ColumnName="GiftPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonTbls">
+            <EntityTypeMapping TypeName="GiftAppDBModel.PersonTbl">
+              <MappingFragment StoreEntitySet="PersonTbl">
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="PersonDOB" ColumnName="PersonDOB" />
+                <ScalarProperty Name="PersonGender" ColumnName="PersonGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTbls">
+            <EntityTypeMapping TypeName="GiftAppDBModel.UserTbl">
+              <MappingFragment StoreEntitySet="UserTbl">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
