@@ -13,8 +13,6 @@ namespace FOOP_Project
         {
             if (!CheckUser(username, password))
             {
-                _db.UserTbls.Add(new UserTbl{UserName = username, UserPassword = password});
-                _db.SaveChanges();
                 Console.WriteLine(@"User registered");
             }
             else
