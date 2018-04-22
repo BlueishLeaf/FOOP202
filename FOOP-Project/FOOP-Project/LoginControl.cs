@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace FOOP_Project
 {
-    internal class Program
+    internal class LoginControl
     {
-        private GiftAppDBEntities _db = new GiftAppDBEntities();
+        private readonly GiftAppDBEntities _db = new GiftAppDBEntities();
         public void RegisterUser(string username, string password)
         {
             if (!CheckUser(username, password))
             {
-                _db.UserTbls.Add(new UserTbl{UserName = username, UserPassword = password});
-                _db.SaveChanges();
                 Console.WriteLine(@"User registered");
             }
             else
@@ -23,14 +21,17 @@ namespace FOOP_Project
             }
         }
 
-        public void LogIn(string username, string password)
+        public void LogIn(string username, string password, MainWindow main)
         {
             if (CheckUser(username, password))
             {
-                Console.WriteLine(@"User Exists");
+                var dBoard = new Dashboard(GetUserId(username,password)){Owner = main};
+                dBoard.Show();
             }
         }
 
         private bool CheckUser(string username, string password) => _db.UserTbls.Select(u => u.UserName.ToLower()).SingleOrDefault(u => u.Equals(username.ToLower())) != null && _db.UserTbls.Select(u => u.UserPassword).SingleOrDefault(u => u.Equals(password)) != null;
+
+        private int GetUserId(string username, string password) => _db.UserTbls.Select(u => new { u.UserId, u.UserName, u.UserPassword }).First(u => u.UserName.Equals(username) && u.UserPassword.Equals(password)).UserId;
     }
 }

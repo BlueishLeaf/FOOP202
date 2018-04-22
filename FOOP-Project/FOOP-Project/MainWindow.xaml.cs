@@ -18,15 +18,19 @@ namespace FOOP_Project
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private readonly Program _appInstance = new Program();
+        private readonly LoginControl _appInstance = new LoginControl();
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void LoginBtn_Click(object sender, RoutedEventArgs e) => _appInstance.LogIn(UsernameBox.Text, PasswordBox.Text);
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _appInstance.LogIn(UsernameBox.Text, PasswordBox.Text, this);
+            Hide();
+        }
 
         private void RegisterBtn_Click(object sender, RoutedEventArgs e) => _appInstance.RegisterUser(UsernameBox.Text, PasswordBox.Text);
     }
