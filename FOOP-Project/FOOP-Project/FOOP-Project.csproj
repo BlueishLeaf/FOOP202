@@ -87,12 +87,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DB_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EditPerson.xaml.cs">
+      <DependentUpon>EditPerson.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EventTbl.cs">
       <DependentUpon>DB_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="GiftTbl.cs">
       <DependentUpon>DB_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Person.cs" />
     <Compile Include="PersonTbl.cs">
       <DependentUpon>DB_Model.tt</DependentUpon>
     </Compile>
@@ -100,6 +104,10 @@
       <DependentUpon>DB_Model.tt</DependentUpon>
     </Compile>
     <Page Include="Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPerson.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

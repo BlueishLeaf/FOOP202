@@ -17,7 +17,7 @@ namespace FOOP_Project
         public int GiftId { get; set; }
         public string GiftName { get; set; }
         public int EventId { get; set; }
-        public Nullable<decimal> GiftPrice { get; set; }
+        public decimal GiftPrice { get; set; }
     
         public virtual EventTbl EventTbl { get; set; }
     }
