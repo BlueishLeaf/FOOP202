@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'H:\Repos\FOOP202\FOOP-Project\FOOP-Project\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\killi\Documents\Repos\FOOP202\foop-project\FOOP-Project\DbModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

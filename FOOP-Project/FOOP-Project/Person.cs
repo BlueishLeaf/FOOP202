@@ -12,7 +12,6 @@ namespace FOOP_Project
         public string Name { get; set; }
         public string Gender { get; set; }
         public int Age { get; set; }
-        public List<Event> Type { get; set; }
     }
 
     public class Event
@@ -20,7 +19,7 @@ namespace FOOP_Project
         public string Name { get; set; }
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public List<Gift> PotentialGifts { get; set; }
+        public string DateString { get; set; }
     }
 
     public class Gift
@@ -28,5 +27,6 @@ namespace FOOP_Project
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public string PriceString { get; set; }
     }
 }

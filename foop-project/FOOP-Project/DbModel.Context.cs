@@ -15,10 +15,10 @@ namespace FOOP_Project
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class GiftAppDBEntities2 : DbContext
+    public partial class GiftAppDBEntities : DbContext
     {
-        public GiftAppDBEntities2()
-            : base("name=GiftAppDBEntities2")
+        public GiftAppDBEntities()
+            : base("name=GiftAppDBEntities")
         {
         }
     
@@ -31,6 +31,40 @@ namespace FOOP_Project
         public virtual DbSet<GiftTbl> GiftTbls { get; set; }
         public virtual DbSet<PersonTbl> PersonTbls { get; set; }
         public virtual DbSet<UserTbl> UserTbls { get; set; }
+    
+        public virtual int AddEvent(string inputEventName, Nullable<System.DateTime> inputEventDate, Nullable<int> inputPersonId)
+        {
+            var inputEventNameParameter = inputEventName != null ?
+                new ObjectParameter("InputEventName", inputEventName) :
+                new ObjectParameter("InputEventName", typeof(string));
+    
+            var inputEventDateParameter = inputEventDate.HasValue ?
+                new ObjectParameter("InputEventDate", inputEventDate) :
+                new ObjectParameter("InputEventDate", typeof(System.DateTime));
+    
+            var inputPersonIdParameter = inputPersonId.HasValue ?
+                new ObjectParameter("InputPersonId", inputPersonId) :
+                new ObjectParameter("InputPersonId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEvent", inputEventNameParameter, inputEventDateParameter, inputPersonIdParameter);
+        }
+    
+        public virtual int AddGift(string inputGiftName, Nullable<decimal> inputGiftPrice, Nullable<int> inputEventId)
+        {
+            var inputGiftNameParameter = inputGiftName != null ?
+                new ObjectParameter("InputGiftName", inputGiftName) :
+                new ObjectParameter("InputGiftName", typeof(string));
+    
+            var inputGiftPriceParameter = inputGiftPrice.HasValue ?
+                new ObjectParameter("InputGiftPrice", inputGiftPrice) :
+                new ObjectParameter("InputGiftPrice", typeof(decimal));
+    
+            var inputEventIdParameter = inputEventId.HasValue ?
+                new ObjectParameter("InputEventId", inputEventId) :
+                new ObjectParameter("InputEventId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddGift", inputGiftNameParameter, inputGiftPriceParameter, inputEventIdParameter);
+        }
     
         public virtual int AddPerson(Nullable<int> inputUserId, string inputPersonName, Nullable<System.DateTime> inputPersonDOB, string inputPersonGender)
         {
@@ -91,40 +125,6 @@ namespace FOOP_Project
                 new ObjectParameter("InputPersonId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeletePerson", inputPersonIdParameter);
-        }
-    
-        public virtual int AddEvent(string inputEventName, Nullable<System.DateTime> inputEventDate, Nullable<int> inputPersonId)
-        {
-            var inputEventNameParameter = inputEventName != null ?
-                new ObjectParameter("InputEventName", inputEventName) :
-                new ObjectParameter("InputEventName", typeof(string));
-    
-            var inputEventDateParameter = inputEventDate.HasValue ?
-                new ObjectParameter("InputEventDate", inputEventDate) :
-                new ObjectParameter("InputEventDate", typeof(System.DateTime));
-    
-            var inputPersonIdParameter = inputPersonId.HasValue ?
-                new ObjectParameter("InputPersonId", inputPersonId) :
-                new ObjectParameter("InputPersonId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEvent", inputEventNameParameter, inputEventDateParameter, inputPersonIdParameter);
-        }
-    
-        public virtual int AddGift(string inputGiftName, Nullable<decimal> inputGiftPrice, Nullable<int> inputEventId)
-        {
-            var inputGiftNameParameter = inputGiftName != null ?
-                new ObjectParameter("InputGiftName", inputGiftName) :
-                new ObjectParameter("InputGiftName", typeof(string));
-    
-            var inputGiftPriceParameter = inputGiftPrice.HasValue ?
-                new ObjectParameter("InputGiftPrice", inputGiftPrice) :
-                new ObjectParameter("InputGiftPrice", typeof(decimal));
-    
-            var inputEventIdParameter = inputEventId.HasValue ?
-                new ObjectParameter("InputEventId", inputEventId) :
-                new ObjectParameter("InputEventId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddGift", inputGiftNameParameter, inputGiftPriceParameter, inputEventIdParameter);
         }
     }
 }

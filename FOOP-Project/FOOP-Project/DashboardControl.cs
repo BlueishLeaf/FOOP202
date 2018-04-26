@@ -1,59 +1,52 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace FOOP_Project
 {
     public class DashboardControl
     {
         private readonly int _userId;
-        private readonly GiftAppDBEntities2 _db = new GiftAppDBEntities2();
-        public readonly string[] SortByStrings = {"Name A-Z","Name Z-A","Age Asc","Age Desc", "Gender M-F", "Gender F-M"};
-        public readonly string[] UpcomingEventsStrings = { "All","1 Week", "2 Weeks", "1 Month", "2 Months", "1 Year", "2 Years" };
-        public readonly string[] SortByGiftStrings = { "Name A-Z", "Name Z-A", "Price Asc", "Price Desc"};
+        private readonly GiftAppDBEntities _db = new GiftAppDBEntities();
+        public DashboardControl(int userId) => _userId = userId;
 
-        public DashboardControl(int userId)
-        {
-            _userId = userId;
+        #region GettingData
 
-        }
         public ObservableCollection<Person> GetPeople()
         {
-            var myPeople = new ObservableCollection<Person>();
+            var personCollection = new ObservableCollection<Person>();
             foreach (var p in _db.PersonTbls.Select(p => new { p.PersonName, p.UserId, p.PersonDOB, p.PersonGender, p.PersonId }).Where(p => p.UserId.Equals(_userId)))
-            {
-                myPeople.Add(new Person() { Name = p.PersonName,Id = p.PersonId, Age = (DateTime.Now - p.PersonDOB).Days, Gender = p.PersonGender});
-            }
-
-            return myPeople;
+                personCollection.Add(new Person
+                {
+                    Name = p.PersonName,
+                    Id = p.PersonId,
+                    Age = (DateTime.Now - p.PersonDOB).Days/365,
+                    Gender = p.PersonGender
+                });
+            return personCollection;
         }
 
         public ObservableCollection<Event> GetEvents(int personId)
         {
-            var myEvents = new ObservableCollection<Event>();
+            var eventCollection = new ObservableCollection<Event>();
             foreach (var e in _db.EventTbls.Select(e => new { e.EventName, e.PersonId, e.EventDate, e.EventId }).Where(e => e.PersonId.Equals(personId)))
-            {
-                myEvents.Add(new Event() { Name = e.EventName, Date = e.EventDate, Id = e.EventId});
-            }
-            
-            return myEvents;
+                eventCollection.Add(new Event { Name = e.EventName, Date = e.EventDate, DateString = e.EventDate.ToShortDateString(), Id = e.EventId });
+            return eventCollection;
         }
 
         public ObservableCollection<Gift> GetGifts(int eventId)
         {
-            var myGifts = new ObservableCollection<Gift>();
-            foreach (var g in _db.GiftTbls.Select(g => new { g.GiftId, g.GiftName, g.GiftPrice }).Where(g => g.GiftId.Equals(eventId)))
-            {
-                myGifts.Add(new Gift() { Name = g.GiftName, Price = g.GiftPrice, Id = g.GiftId });
-            }
-
-            return myGifts;
+            var giftCollection = new ObservableCollection<Gift>();
+            foreach (var g in _db.GiftTbls.Select(g => new { g.GiftId, g.GiftName, g.GiftPrice, g.EventId }).Where(g => g.EventId.Equals(eventId)))
+                giftCollection.Add(new Gift { Name = g.GiftName, Price = g.GiftPrice, PriceString = string.Format(CultureInfo.GetCultureInfo("en-IE"),"{0:C}",g.GiftPrice),Id = g.GiftId });
+            return giftCollection;
         }
+
+        #endregion
+
+        #region SortingData
 
         public IOrderedEnumerable<Person> SortPeople(int index, IEnumerable<Person> list)
         {
@@ -72,7 +65,7 @@ namespace FOOP_Project
                 case 5:
                     return list.OrderByDescending(p => p.Gender);
                 default:
-                    return list.OrderBy(p=>p);
+                    return list.OrderBy(p => p);
             }
         }
 
@@ -85,57 +78,33 @@ namespace FOOP_Project
                     return list;
                 case 1:
                     foreach (var e in list)
-                    {
                         if ((e.Date - DateTime.Now).Days <= 7)
-                        {
                             filteredList.Add(e);
-                        }
-                    }
                     return filteredList;
                 case 2:
                     foreach (var e in list)
-                    {
                         if ((e.Date - DateTime.Now).Days <= 14)
-                        {
                             filteredList.Add(e);
-                        }
-                    }
                     return filteredList;
                 case 3:
                     foreach (var e in list)
-                    {
                         if ((e.Date - DateTime.Now).Days <= 30)
-                        {
                             filteredList.Add(e);
-                        }
-                    }
                     return filteredList;
                 case 4:
                     foreach (var e in list)
-                    {
                         if ((e.Date - DateTime.Now).Days <= 60)
-                        {
                             filteredList.Add(e);
-                        }
-                    }
                     return filteredList;
                 case 5:
                     foreach (var e in list)
-                    {
                         if ((e.Date - DateTime.Now).Days <= 365)
-                        {
                             filteredList.Add(e);
-                        }
-                    }
                     return filteredList;
                 case 6:
                     foreach (var e in list)
-                    {
                         if ((e.Date - DateTime.Now).Days <= 760)
-                        {
                             filteredList.Add(e);
-                        }
-                    }
                     return filteredList;
                 default:
                     return list;
@@ -159,9 +128,13 @@ namespace FOOP_Project
             }
         }
 
+        #endregion
+
+        #region AddingObjects
+
         public void AddPerson(Dashboard dash)
         {
-            var addPersonWin = new AddPerson(){Owner = dash};
+            var addPersonWin = new AddPerson { Owner = dash };
             addPersonWin.ShowDialog();
         }
 
@@ -177,34 +150,23 @@ namespace FOOP_Project
             addGiftWin.ShowDialog();
         }
 
-        public void DeletePerson(Person selectedPerson)
-        {
-            _db.DeletePerson(selectedPerson.Id);
-        }
+        public void SavePerson(string name, DateTime dob, string gender) => _db.AddPerson(_userId, name, dob, gender);
 
-        public void DeleteEvent(Event selectedEvent)
-        {
-            _db.DeleteEvent(selectedEvent.Id);
-        }
+        public void SaveEvent(string eventName, DateTime eventDate, int id) => _db.AddEvent(eventName, eventDate, id);
 
-        public void DeleteGift(Gift selectedGift)
-        {
-            _db.DeleteGift(selectedGift.Id);
-        }
+        public void SaveGift(string giftName, string giftPrice, int id) => _db.AddGift(giftName, Convert.ToDecimal(giftPrice), id);
 
-        public void SavePerson(string name, DateTime dob, string gender)
-        {
-            _db.AddPerson(_userId, name, dob, gender);
-        }
+        #endregion
 
-        public void SaveEvent(string eventName, DateTime eventDate, int id)
-        {
-            _db.AddEvent(eventName,eventDate,id);
-        }
+        #region DeleteObjects
 
-        public void SaveGift(string giftName, string giftPrice, int id)
-        {
-            _db.AddGift(giftName, Convert.ToDecimal(giftPrice),id);
-        }
+        public void DeletePerson(Person selectedPerson) => _db.DeletePerson(selectedPerson.Id);
+
+        public void DeleteEvent(Event selectedEvent) => _db.DeleteEvent(selectedEvent.Id);
+
+        public void DeleteGift(Gift selectedGift) => _db.DeleteGift(selectedGift.Id);
+
+        #endregion
+
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GiftAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GiftAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="EventTbl">
           <Key>
             <PropertyRef Name="EventId" />
@@ -124,7 +124,8 @@
             <End Role="PersonTbl" EntitySet="PersonTbl" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GiftAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -206,7 +207,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GiftAppDBEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GiftAppDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EventTbls" EntityType="Self.EventTbl" />
           <EntitySet Name="GiftTbls" EntityType="Self.GiftTbl" />
           <EntitySet Name="PersonTbls" EntityType="Self.PersonTbl" />
@@ -223,6 +224,16 @@
             <End Role="UserTbl" EntitySet="UserTbls" />
             <End Role="PersonTbl" EntitySet="PersonTbls" />
           </AssociationSet>
+          <FunctionImport Name="AddEvent">
+            <Parameter Name="InputEventName" Mode="In" Type="String" />
+            <Parameter Name="InputEventDate" Mode="In" Type="DateTime" />
+            <Parameter Name="InputPersonId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddGift">
+            <Parameter Name="InputGiftName" Mode="In" Type="String" />
+            <Parameter Name="InputGiftPrice" Mode="In" Type="Decimal" />
+            <Parameter Name="InputEventId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="AddPerson">
             <Parameter Name="InputUserId" Mode="In" Type="Int32" />
             <Parameter Name="InputPersonName" Mode="In" Type="String" />
@@ -234,23 +245,13 @@
             <Parameter Name="InputUserPassword" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteEvent">
-          <Parameter Name="InputEventId" Mode="In" Type="Int32" />
+            <Parameter Name="InputEventId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteGift">
-          <Parameter Name="InputGiftId" Mode="In" Type="Int32" />
+            <Parameter Name="InputGiftId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeletePerson">
-          <Parameter Name="InputPersonId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AddEvent">
-            <Parameter Name="InputEventName" Mode="In" Type="String" />
-            <Parameter Name="InputEventDate" Mode="In" Type="DateTime" />
             <Parameter Name="InputPersonId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AddGift">
-            <Parameter Name="InputGiftName" Mode="In" Type="String" />
-            <Parameter Name="InputGiftPrice" Mode="In" Type="Decimal" />
-            <Parameter Name="InputEventId" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -258,7 +259,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GiftAppDBModelStoreContainer" CdmEntityContainer="GiftAppDBEntities2">
+        <EntityContainerMapping StorageEntityContainer="GiftAppDBModelStoreContainer" CdmEntityContainer="GiftAppDBEntities">
           <EntitySetMapping Name="EventTbls">
             <EntityTypeMapping TypeName="GiftAppDBModel.EventTbl">
               <MappingFragment StoreEntitySet="EventTbl">
@@ -299,13 +300,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddEvent" FunctionName="GiftAppDBModel.Store.AddEvent" />
+          <FunctionImportMapping FunctionImportName="AddGift" FunctionName="GiftAppDBModel.Store.AddGift" />
           <FunctionImportMapping FunctionImportName="AddPerson" FunctionName="GiftAppDBModel.Store.AddPerson" />
           <FunctionImportMapping FunctionImportName="AddUser" FunctionName="GiftAppDBModel.Store.AddUser" />
           <FunctionImportMapping FunctionImportName="DeleteEvent" FunctionName="GiftAppDBModel.Store.DeleteEvent" />
           <FunctionImportMapping FunctionImportName="DeleteGift" FunctionName="GiftAppDBModel.Store.DeleteGift" />
           <FunctionImportMapping FunctionImportName="DeletePerson" FunctionName="GiftAppDBModel.Store.DeletePerson" />
-          <FunctionImportMapping FunctionImportName="AddEvent" FunctionName="GiftAppDBModel.Store.AddEvent" />
-          <FunctionImportMapping FunctionImportName="AddGift" FunctionName="GiftAppDBModel.Store.AddGift" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

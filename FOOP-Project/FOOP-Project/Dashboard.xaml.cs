@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace FOOP_Project
 {
@@ -21,88 +10,88 @@ namespace FOOP_Project
     public partial class Dashboard
     {
         public readonly DashboardControl DashCon;
+        private readonly string[] _cbxSortPeopleStrings = { "Name A-Z", "Name Z-A", "Age Asc", "Age Desc", "Gender A-Z", "Gender Z-A" };
+        private readonly string[] _cbxFilterEventsStrings = { "All", "1 Week", "2 Weeks", "1 Month", "2 Months", "1 Year", "2 Years" };
+        private readonly string[] _cbxSortGiftsStrings = { "Name A-Z", "Name Z-A", "Price Asc", "Price Desc" };
         public Dashboard(int userId)
         {
             InitializeComponent();
             DashCon = new DashboardControl(userId);
-            PeopleBox.ItemsSource = DashCon.GetPeople();
-            SortByCombo.ItemsSource = DashCon.SortByStrings;
-            ShowEventsCombo.ItemsSource = DashCon.UpcomingEventsStrings;
-            SortByGiftsCombo.ItemsSource = DashCon.SortByGiftStrings;
+            LbxPeople.ItemsSource = DashCon.GetPeople();
+            CbxSortPeople.ItemsSource = _cbxSortPeopleStrings;
+            CbxFilterEvents.ItemsSource = _cbxFilterEventsStrings;
+            CbxSortGifts.ItemsSource = _cbxSortGiftsStrings;
         }
 
-        private void PeopleBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LbxPeople_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!(PeopleBox.SelectedItem is Person selectedPerson)) return;
-            EventBox.ItemsSource = DashCon.GetEvents(selectedPerson.Id);
-            GiftsBox.ItemsSource = null;
+            if (!(LbxPeople.SelectedItem is Person selectedPerson)) return;
+            LbxEvents.ItemsSource = DashCon.GetEvents(selectedPerson.Id);
+            LbxGifts.ItemsSource = null;
         }
 
-        private void EventBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LbxEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!(EventBox.SelectedItem is Event selectedEvent)) return;
-            GiftsBox.ItemsSource = DashCon.GetGifts(selectedEvent.Id);
+            if (!(LbxEvents.SelectedItem is Event selectedEvent)) return;
+            LbxGifts.ItemsSource = DashCon.GetGifts(selectedEvent.Id);
         }
 
-        private void SortByCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbxSortPeople_SelectionChanged(object sender, SelectionChangedEventArgs e) => LbxPeople.ItemsSource = DashCon.SortPeople(CbxSortPeople.SelectedIndex, LbxPeople.ItemsSource as IEnumerable<Person>);
+
+        private void CbxFilterEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PeopleBox.ItemsSource = DashCon.SortPeople(SortByCombo.SelectedIndex, PeopleBox.ItemsSource as IEnumerable<Person>);
+            if (!(LbxPeople.SelectedItem is Person selectedPerson)) return;
+            LbxEvents.ItemsSource = DashCon.SortEvents(CbxFilterEvents.SelectedIndex, DashCon.GetEvents(selectedPerson.Id));
         }
 
-        private void ShowEventsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbxSortGifts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!(PeopleBox.SelectedItem is Person selectedPerson)) return;
-            EventBox.ItemsSource = DashCon.SortEvents(ShowEventsCombo.SelectedIndex, DashCon.GetEvents(selectedPerson.Id));
-        }
-
-        private void SortByGiftsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (EventBox.SelectedItem==null) return;
-            GiftsBox.ItemsSource = DashCon.SortGifts(SortByGiftsCombo.SelectedIndex, GiftsBox.ItemsSource as IEnumerable<Gift>);
+            if (LbxEvents.SelectedItem==null) return;
+            LbxGifts.ItemsSource = DashCon.SortGifts(CbxSortGifts.SelectedIndex, LbxGifts.ItemsSource as IEnumerable<Gift>);
         }
 
 
-        private void AddPerson_Click(object sender, RoutedEventArgs e)
+        private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
         {
             DashCon.AddPerson(this);
-            PeopleBox.ItemsSource = DashCon.GetPeople();
+            LbxPeople.ItemsSource = DashCon.GetPeople();
         }
 
-        private void AddEvent_Click(object sender, RoutedEventArgs e)
+        private void BtnAddEvent_Click(object sender, RoutedEventArgs e)
         {
-            if (!(PeopleBox.SelectedItem is Person selectedPerson)) return;
+            if (!(LbxPeople.SelectedItem is Person selectedPerson)) return;
             DashCon.AddEvent(this, selectedPerson.Id);
-            EventBox.ItemsSource = DashCon.GetEvents(selectedPerson.Id);
+            LbxEvents.ItemsSource = DashCon.GetEvents(selectedPerson.Id);
         }
 
-        private void AddGift_Click(object sender, RoutedEventArgs e)
+        private void BtnAddGift_Click(object sender, RoutedEventArgs e)
         {
-            if (!(EventBox.SelectedItem is Event selectedEvent)) return;
+            if (!(LbxEvents.SelectedItem is Event selectedEvent)) return;
             DashCon.AddGift(this, selectedEvent.Id);
-            GiftsBox.ItemsSource = DashCon.GetGifts(selectedEvent.Id);
+            LbxGifts.ItemsSource = DashCon.GetGifts(selectedEvent.Id);
         }
 
-        private void DeletePerson_Click(object sender, RoutedEventArgs e)
+        private void BtnDeletePerson_Click(object sender, RoutedEventArgs e)
         {
-            if (!(PeopleBox.SelectedItem is Person selectedPerson)) return;
+            if (!(LbxPeople.SelectedItem is Person selectedPerson)) return;
             DashCon.DeletePerson(selectedPerson);
-            PeopleBox.ItemsSource = DashCon.GetPeople();
+            LbxPeople.ItemsSource = DashCon.GetPeople();
         }
 
-        private void DeleteEvent_Click(object sender, RoutedEventArgs e)
+        private void BtnDeleteEvent_Click(object sender, RoutedEventArgs e)
         {
-            if (!(EventBox.SelectedItem is Event selectedEvent)) return;
+            if (!(LbxEvents.SelectedItem is Event selectedEvent)) return;
             DashCon.DeleteEvent(selectedEvent);
-            if (!(PeopleBox.SelectedItem is Person selectedPerson)) return;
-            EventBox.ItemsSource = DashCon.GetEvents(selectedPerson.Id);
+            if (!(LbxPeople.SelectedItem is Person selectedPerson)) return;
+            LbxEvents.ItemsSource = DashCon.GetEvents(selectedPerson.Id);
         }
 
-        private void DeleteGift_Click(object sender, RoutedEventArgs e)
+        private void BtnDeleteGift_Click(object sender, RoutedEventArgs e)
         {
-            if (!(GiftsBox.SelectedItem is Gift selectedGift)) return;
+            if (!(LbxGifts.SelectedItem is Gift selectedGift)) return;
             DashCon.DeleteGift(selectedGift);
-            if (!(EventBox.SelectedItem is Event selectedEvent)) return;
-            GiftsBox.ItemsSource = DashCon.GetGifts(selectedEvent.Id);
+            if (!(LbxEvents.SelectedItem is Event selectedEvent)) return;
+            LbxGifts.ItemsSource = DashCon.GetGifts(selectedEvent.Id);
         }
 
     }

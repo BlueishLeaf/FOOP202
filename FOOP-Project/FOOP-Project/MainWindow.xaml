@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FOOP_Project"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="450">
+        Title="Gift App Login" Height="450" Width="450" WindowStartupLocation="CenterScreen" Icon="images/gift.ico" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -18,16 +17,16 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">Login</Label>
+        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana Pro SemiBold" FontSize="36">Login</Label>
 
-        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">Username</Label>
-        <TextBox x:Name="UsernameBox" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px"></TextBox>
+        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="20">Username</Label>
+        <TextBox x:Name="TbxUsername" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" FontFamily="Verdana" FontSize="20"></TextBox>
 
-        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">Password</Label>
-        <TextBox x:Name="PasswordBox" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px"></TextBox>
+        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="20">Password</Label>
+        <PasswordBox x:Name="PbxPassword" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" FontFamily="Verdana" FontSize="20"></PasswordBox>
 
-        <Button x:Name="LoginBtn" Grid.Column="0" Grid.Row="3" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="LoginBtn_Click"/>
-        <Button x:Name="RegisterBtn" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Register" Width="75" Click="RegisterBtn_Click"/>
+        <Button x:Name="LoginBtn" Grid.Column="0" Grid.Row="3" MinWidth="100px" MinHeight="40" Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Click="LoginBtn_Click" FontFamily="Verdana" FontSize="20"/>
+        <Button x:Name="RegisterBtn" Grid.Column="1" Grid.Row="3" MinWidth="100px" MinHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Register" Width="75" Click="RegisterBtn_Click" FontFamily="Verdana" FontSize="20"/>
 
     </Grid>
 </Window>

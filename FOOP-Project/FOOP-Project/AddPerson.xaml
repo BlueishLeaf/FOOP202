@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FOOP_Project"
         mc:Ignorable="d"
-        Title="AddPerson" Height="450" Width="400">
+        Title="AddPerson" Height="450" Width="400" Icon="images/gift.ico" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -18,15 +18,15 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">Add Person</Label>
-        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">Full Name</Label>
-        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right">Date of Birth</Label>
-        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">Gender</Label>
-        <TextBox x:Name="NameTbx" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100"></TextBox>
-        <DatePicker x:Name="PersonDob" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"></DatePicker>
-        <TextBox x:Name="GenderTbx" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100"></TextBox>
-        <Button x:Name="SaveBtn" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="SaveBtn_Click">Save</Button>
-        <Button x:Name="CancelBtn" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="CancelBtn_Click">Cancel</Button>
+
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana Pro SemiBold" FontSize="20" FontWeight="Bold">Add Person</Label>
+        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana" FontSize="16">Full Name</Label>
+        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana" FontSize="16">Date of Birth</Label>
+        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Verdana" FontSize="16">Gender</Label>
+        <TextBox x:Name="NameTbx" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="140" FontFamily="Verdana" FontSize="16" Height="30"></TextBox>
+        <DatePicker x:Name="PersonDob" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="16" Width="140" Height="30"></DatePicker>
+        <TextBox x:Name="GenderTbx" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="140" FontFamily="Verdana" FontSize="16" Height="30"></TextBox>
+        <Button x:Name="BtnSave" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Width="100px" Height="40" HorizontalAlignment="Center" Click="BtnSave_Click" FontFamily="Verdana" FontSize="16">Save</Button>
+        <Button x:Name="BtnCancel" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Width="100px" Height="40" HorizontalAlignment="Center" Click="BtnCancel_Click" FontFamily="Verdana" FontSize="16">Cancel</Button>
     </Grid>
 </Window>

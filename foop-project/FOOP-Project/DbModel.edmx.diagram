@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7f7fb44db44d42abbc8fdc85ddaf068f" Name="Diagram1">
+      <Diagram DiagramId="2dcc46ecead743d2871c22014286504a" Name="Diagram1">
         <EntityTypeShape EntityType="GiftAppDBModel.EventTbl" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="GiftAppDBModel.GiftTbl" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GiftAppDBModel.PersonTbl" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />

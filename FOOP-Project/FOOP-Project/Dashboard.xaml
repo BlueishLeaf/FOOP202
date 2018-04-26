@@ -5,26 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FOOP_Project"
         mc:Ignorable="d"
-        Title="Dashboard" Height="450" Width="900">
+        Title="Gift App Dashboard" Height="500" Width="900" Icon="images/gift.ico" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Window.Resources>
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="100" />
+            <Setter Property="MinHeight" Value="40" />
+        </Style>
         <DataTemplate x:Key="PersonTemplate">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding (local:Person.Name)}"></TextBlock>
-                <TextBlock Grid.Row="1" Text="{Binding (local:Person.Age)}"></TextBlock>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center" Grid.Column="0" Text="{Binding (local:Person.Name)}" FontFamily="Verdana" FontSize="16" FontWeight="Bold"></TextBlock>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Label VerticalAlignment="Center" FontFamily="Verdana" FontSize="16" FontWeight="Bold">Age:</Label>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding (local:Person.Age)}" FontFamily="Verdana" FontSize="16"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Label VerticalAlignment="Center" FontFamily="Verdana" FontSize="16" FontWeight="Bold">Gender:</Label>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding (local:Person.Gender)}" FontFamily="Verdana" FontSize="16"></TextBlock>
+                </StackPanel>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="EventTemplate">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding (local:Event.Name)}"></TextBlock>
-                <TextBlock Grid.Row="1" Text="{Binding (local:Event.Date)}"></TextBlock>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding (local:Event.Name)}" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100"></TextBlock>
+                <TextBlock Grid.Column="1" Text="{Binding (local:Event.DateString)}" VerticalAlignment="Center" HorizontalAlignment="Left" MinWidth="100"></TextBlock>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="GiftTable">
@@ -33,12 +45,15 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="{Binding (local:Gift.Name)}"></TextBlock>
-                <TextBlock Grid.Row="1" Text="{Binding (local:Gift.Price)}"></TextBlock>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding (local:Gift.Name)}"></TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding (local:Gift.PriceString)}"></TextBlock>
+                <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Source="images/gift.ico" Width="40" Height="40"></Image>
             </Grid>
         </DataTemplate>
-
-
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -52,35 +67,35 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">People</Label>
-        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">Upcoming Events</Label>
-        <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Gifts</Label>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="20" FontWeight="Bold">People</Label>
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="20" FontWeight="Bold">Upcoming Events</Label>
+        <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="20" FontWeight="Bold">Gifts</Label>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label>Sort by:</Label>
-            <ComboBox x:Name="SortByCombo" Width="100" SelectionChanged="SortByCombo_SelectionChanged"/>
+            <Label FontFamily="Verdana" FontSize="16">Sort by:</Label>
+            <ComboBox x:Name="CbxSortPeople" Width="130" SelectionChanged="CbxSortPeople_SelectionChanged" FontFamily="Verdana" FontSize="16"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label>Show events within:</Label>
-            <ComboBox x:Name="ShowEventsCombo" Width="100" SelectionChanged="ShowEventsCombo_SelectionChanged"/>
+            <Label FontFamily="Verdana" FontSize="16">Show events within:</Label>
+            <ComboBox x:Name="CbxFilterEvents" Width="130" SelectionChanged="CbxFilterEvents_SelectionChanged" FontFamily="Verdana" FontSize="16"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label>Sort by:</Label>
-            <ComboBox x:Name="SortByGiftsCombo" Width="100" SelectionChanged="SortByGiftsCombo_SelectionChanged"/>
+            <Label FontFamily="Verdana" FontSize="16">Sort by:</Label>
+            <ComboBox x:Name="CbxSortGifts" Width="130" SelectionChanged="CbxSortGifts_SelectionChanged" FontFamily="Verdana" FontSize="16"/>
         </StackPanel>
-        <ListBox x:Name="PeopleBox" Grid.Row="2" Grid.Column="0" Margin="10" ItemTemplate="{StaticResource PersonTemplate}" SelectionChanged="PeopleBox_SelectionChanged"></ListBox>
-        <ListBox x:Name="EventBox" Grid.Row="2" Grid.Column="1" Margin="10" ItemTemplate="{StaticResource EventTemplate}" SelectionChanged="EventBox_SelectionChanged"></ListBox>
-        <ListBox x:Name="GiftsBox" Grid.Row="2" Grid.Column="2" Margin="10" ItemTemplate="{StaticResource GiftTable}"></ListBox>
+        <ListBox x:Name="LbxPeople" Grid.Row="2" Grid.Column="0" Margin="10" ItemTemplate="{StaticResource PersonTemplate}" SelectionChanged="LbxPeople_SelectionChanged" FontFamily="Verdana" FontSize="16" HorizontalContentAlignment="Stretch"></ListBox>
+        <ListBox x:Name="LbxEvents" Grid.Row="2" Grid.Column="1" Margin="10" ItemTemplate="{StaticResource EventTemplate}" SelectionChanged="LbxEvents_SelectionChanged" FontFamily="Verdana" FontSize="16" HorizontalContentAlignment="Stretch"></ListBox>
+        <ListBox x:Name="LbxGifts" Grid.Row="2" Grid.Column="2" Margin="10" ItemTemplate="{StaticResource GiftTable}" FontFamily="Verdana" FontSize="16" HorizontalContentAlignment="Stretch"></ListBox>
         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="AddPerson" Width="60" Margin="10" Click="AddPerson_Click">Add</Button>
-            <Button x:Name="DeletePerson" Width="60" Margin="10" Click="DeletePerson_Click">Delete</Button>
+            <Button x:Name="BtnAddPerson" Width="60" Margin="10" Click="BtnAddPerson_Click" FontFamily="Verdana" FontSize="16" Style="{StaticResource BtnStyle}">Add</Button>
+            <Button x:Name="BtnDeletePerson" Width="60" Margin="10" Click="BtnDeletePerson_Click" FontFamily="Verdana" FontSize="16" Style="{StaticResource BtnStyle}">Delete</Button>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="AddEvent" Width="60" Margin="10" Click="AddEvent_Click">Add</Button>
-            <Button x:Name="DeleteEvent" Width="60" Margin="10" Click="DeleteEvent_Click">Delete</Button>
+            <Button x:Name="BtnAddEvent" Width="60" Margin="10" Click="BtnAddEvent_Click" FontFamily="Verdana" FontSize="16" Style="{StaticResource BtnStyle}">Add</Button>
+            <Button x:Name="BtnDeleteEvent" Width="60" Margin="10" Click="BtnDeleteEvent_Click" FontFamily="Verdana" FontSize="16" Style="{StaticResource BtnStyle}">Delete</Button>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="AddGift" Width="60" Margin="10" Click="AddGift_Click">Add</Button>
-            <Button x:Name="DeleteGift" Width="60" Margin="10" Click="DeleteGift_Click">Delete</Button>
+            <Button x:Name="BtnAddGift" Width="60" Margin="10" Click="BtnAddGift_Click" FontFamily="Verdana" FontSize="16" Style="{StaticResource BtnStyle}">Add</Button>
+            <Button x:Name="BtnDeleteGift" Width="60" Margin="10" Click="BtnDeleteGift_Click" FontFamily="Verdana" FontSize="16" Style="{StaticResource BtnStyle}">Delete</Button>
         </StackPanel>
     </Grid>
 </Window>

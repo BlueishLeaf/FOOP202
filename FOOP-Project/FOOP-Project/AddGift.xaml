@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FOOP_Project"
         mc:Ignorable="d"
-        Title="AddGift" Height="450" Width="400">
+        Title="AddGift" Height="450" Width="400" Icon="images/gift.ico" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -17,12 +17,12 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">Add a Gift</Label>
-        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">Name of Gift:</Label>
-        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">Price of Gift:</Label>
-        <TextBox x:Name="GiftNameTbx" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"></TextBox>
-        <TextBox x:Name="GiftPriceTbx" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"></TextBox>
-        <Button x:Name="SaveBtn" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="SaveBtn_Click">Save</Button>
-        <Button x:Name="CancelBtn" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="CancelBtn_Click">Cancel</Button>
+        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana Pro SemiBold" FontSize="20">Add a Gift</Label>
+        <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="16" Height="30">Name of Gift:</Label>
+        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="16" Height="30">Price of Gift:</Label>
+        <TextBox x:Name="GiftNameTbx" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" FontFamily="Verdana" FontSize="16" Height="30"></TextBox>
+        <TextBox x:Name="GiftPriceTbx" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" FontFamily="Verdana" FontSize="16" Height="30"></TextBox>
+        <Button x:Name="BtnSave" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnSave_Click" Width="100" Height="40" FontFamily="Verdana" FontSize="16">Save</Button>
+        <Button x:Name="BtnCancel" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnCancel_Click" Width="100" Height="40" FontFamily="Verdana" FontSize="16">Cancel</Button>
     </Grid>
 </Window>

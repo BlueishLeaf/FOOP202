@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace FOOP_Project
 {
@@ -19,14 +7,14 @@ namespace FOOP_Project
     /// </summary>
     public partial class AddEvent : Window
     {
-        private int _personId;
+        private readonly int _personId;
         public AddEvent(int personId)
         {
             InitializeComponent();
             _personId = personId;
         }
 
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (!(Owner is Dashboard main)) return;
             if (DateBx.SelectedDate != null)
@@ -34,9 +22,6 @@ namespace FOOP_Project
             Close();
         }
 
-        private void CancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        private void BtnCancel_Click(object sender, RoutedEventArgs e) => Close();
     }
 }
