@@ -8,12 +8,13 @@ namespace FOOP_Project
 {
     internal class LoginControl
     {
-        private readonly GiftAppDBEntities _db = new GiftAppDBEntities();
+        private readonly GiftAppDBEntities2 _db = new GiftAppDBEntities2();
         public void RegisterUser(string username, string password)
         {
             if (!CheckUser(username, password))
             {
                 Console.WriteLine(@"User registered");
+                _db.AddUser(username,password);
             }
             else
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FOOP_Project
 {
-    internal class Person
+    public class Person
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -15,7 +15,7 @@ namespace FOOP_Project
         public List<Event> Type { get; set; }
     }
 
-    internal class Event
+    public class Event
     {
         public string Name { get; set; }
         public int Id { get; set; }
@@ -23,7 +23,7 @@ namespace FOOP_Project
         public List<Gift> PotentialGifts { get; set; }
     }
 
-    internal class Gift
+    public class Gift
     {
         public int Id { get; set; }
         public string Name { get; set; }

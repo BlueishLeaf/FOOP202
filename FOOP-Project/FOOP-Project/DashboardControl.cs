@@ -9,10 +9,10 @@ using System.Windows;
 
 namespace FOOP_Project
 {
-    internal class DashboardControl
+    public class DashboardControl
     {
         private readonly int _userId;
-        private readonly GiftAppDBEntities _db = new GiftAppDBEntities();
+        private readonly GiftAppDBEntities2 _db = new GiftAppDBEntities2();
         public readonly string[] SortByStrings = {"Name A-Z","Name Z-A","Age Asc","Age Desc", "Gender M-F", "Gender F-M"};
         public readonly string[] UpcomingEventsStrings = { "All","1 Week", "2 Weeks", "1 Month", "2 Months", "1 Year", "2 Years" };
         public readonly string[] SortByGiftStrings = { "Name A-Z", "Name Z-A", "Price Asc", "Price Desc"};
@@ -22,13 +22,12 @@ namespace FOOP_Project
             _userId = userId;
 
         }
-
         public ObservableCollection<Person> GetPeople()
         {
             var myPeople = new ObservableCollection<Person>();
             foreach (var p in _db.PersonTbls.Select(p => new { p.PersonName, p.UserId, p.PersonDOB, p.PersonGender, p.PersonId }).Where(p => p.UserId.Equals(_userId)))
             {
-                myPeople.Add(new Person() { Name = p.PersonName,Id = p.PersonId, Age = (DateTime.Now - p.PersonDOB).Days, Gender = p.PersonGender ? "male" : "female" });
+                myPeople.Add(new Person() { Name = p.PersonName,Id = p.PersonId, Age = (DateTime.Now - p.PersonDOB).Days, Gender = p.PersonGender});
             }
 
             return myPeople;
@@ -41,7 +40,7 @@ namespace FOOP_Project
             {
                 myEvents.Add(new Event() { Name = e.EventName, Date = e.EventDate, Id = e.EventId});
             }
-
+            
             return myEvents;
         }
 
@@ -160,19 +159,52 @@ namespace FOOP_Project
             }
         }
 
-        public void EditPerson()
+        public void AddPerson(Dashboard dash)
         {
-            throw new NotImplementedException();
+            var addPersonWin = new AddPerson(){Owner = dash};
+            addPersonWin.ShowDialog();
         }
 
-        public void AddPerson()
+        public void AddEvent(Dashboard dash, int id)
         {
-            throw new NotImplementedException();
+            var addEventWin = new AddEvent(id) { Owner = dash };
+            addEventWin.ShowDialog();
+        }
+
+        public void AddGift(Dashboard dash, int id)
+        {
+            var addGiftWin = new AddGift(id) { Owner = dash };
+            addGiftWin.ShowDialog();
         }
 
         public void DeletePerson(Person selectedPerson)
         {
-            throw new NotImplementedException();
+            _db.DeletePerson(selectedPerson.Id);
+        }
+
+        public void DeleteEvent(Event selectedEvent)
+        {
+            _db.DeleteEvent(selectedEvent.Id);
+        }
+
+        public void DeleteGift(Gift selectedGift)
+        {
+            _db.DeleteGift(selectedGift.Id);
+        }
+
+        public void SavePerson(string name, DateTime dob, string gender)
+        {
+            _db.AddPerson(_userId, name, dob, gender);
+        }
+
+        public void SaveEvent(string eventName, DateTime eventDate, int id)
+        {
+            _db.AddEvent(eventName,eventDate,id);
+        }
+
+        public void SaveGift(string giftName, string giftPrice, int id)
+        {
+            _db.AddGift(giftName, Convert.ToDecimal(giftPrice),id);
         }
     }
 }

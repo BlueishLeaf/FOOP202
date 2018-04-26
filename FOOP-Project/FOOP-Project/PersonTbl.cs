@@ -24,7 +24,7 @@ namespace FOOP_Project
         public int UserId { get; set; }
         public string PersonName { get; set; }
         public System.DateTime PersonDOB { get; set; }
-        public bool PersonGender { get; set; }
+        public string PersonGender { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventTbl> EventTbls { get; set; }

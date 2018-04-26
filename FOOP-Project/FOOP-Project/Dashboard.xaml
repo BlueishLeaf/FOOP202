@@ -72,8 +72,15 @@
         <ListBox x:Name="GiftsBox" Grid.Row="2" Grid.Column="2" Margin="10" ItemTemplate="{StaticResource GiftTable}"></ListBox>
         <StackPanel Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
             <Button x:Name="AddPerson" Width="60" Margin="10" Click="AddPerson_Click">Add</Button>
-            <Button x:Name="EditPerson" Width="60" Margin="10" Click="EditPerson_Click">Edit</Button>
             <Button x:Name="DeletePerson" Width="60" Margin="10" Click="DeletePerson_Click">Delete</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="AddEvent" Width="60" Margin="10" Click="AddEvent_Click">Add</Button>
+            <Button x:Name="DeleteEvent" Width="60" Margin="10" Click="DeleteEvent_Click">Delete</Button>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="AddGift" Width="60" Margin="10" Click="AddGift_Click">Add</Button>
+            <Button x:Name="DeleteGift" Width="60" Margin="10" Click="DeleteGift_Click">Delete</Button>
         </StackPanel>
     </Grid>
 </Window>
