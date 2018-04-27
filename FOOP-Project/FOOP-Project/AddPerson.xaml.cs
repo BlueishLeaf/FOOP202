@@ -9,14 +9,16 @@ namespace FOOP_Project
     {
         public AddPerson() => InitializeComponent();
 
+        //Pass the data in the text box and date picker back to the SavePerson function in the dashboard control
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (!(Owner is Dashboard main)) return;
-            if (PersonDob.SelectedDate != null)
-                main.DashCon.SavePerson(NameTbx.Text, PersonDob.SelectedDate.Value, GenderTbx.Text);
+            if (DpkrDob.SelectedDate != null)
+                main.DashCon.SavePerson(TbxName.Text, DpkrDob.SelectedDate.Value, TbxGender.Text);
             Close();
         }
 
+        //Close the window
         private void BtnCancel_Click(object sender, RoutedEventArgs e) => Close();
     }
 }

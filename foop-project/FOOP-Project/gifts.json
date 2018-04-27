@@ -1,0 +1,42 @@
+﻿[
+  {
+    "Name": "Honda Civic",
+    "PriceString": "22050.00"
+  },
+  {
+    "Name": "Dell Laptop",
+    "PriceString": "550.90"
+  },
+  {
+    "Name": "PlayStation 4",
+    "PriceString": "299.99"
+  },
+  {
+    "Name": "Toothbrush",
+    "PriceString": "3.69"
+  },
+  {
+    "Name": "Hand Cream",
+    "PriceString": "9.50"
+  },
+  {
+    "Name": "Lynx 20-Pack",
+    "PriceString": "30.50"
+  },
+  {
+    "Name": "Second-Hand Tracksuit Bottoms",
+    "PriceString": "5.90"
+  },
+  {
+    "Name": "Empty Water Bottle",
+    "PriceString": "0.10"
+  },
+  {
+    "Name": "A Copy of Grown Ups 2 on Blu Ray",
+    "PriceString": "999.99"
+  },
+  {
+    "Name": "A Can of Bottom-Tier Pringles",
+    "PriceString": "2.00"
+  }
+]

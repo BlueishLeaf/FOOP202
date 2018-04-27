@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FOOP_Project"
         mc:Ignorable="d"
         Title="AddGift" Height="450" Width="400" Icon="images/gift.ico" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
@@ -17,11 +16,14 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana Pro SemiBold" FontSize="20">Add a Gift</Label>
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label FontFamily="Verdana Pro SemiBold" FontSize="20">Add a Gift</Label>
+            <Button x:Name="BtnRandom" Margin="5" Click="BtnRandom_Click" FontFamily="Verdana">Random</Button>
+        </StackPanel>
         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="16" Height="30">Name of Gift:</Label>
         <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="16" Height="30">Price of Gift:</Label>
-        <TextBox x:Name="GiftNameTbx" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" FontFamily="Verdana" FontSize="16" Height="30"></TextBox>
-        <TextBox x:Name="GiftPriceTbx" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" FontFamily="Verdana" FontSize="16" Height="30"></TextBox>
+        <TextBox x:Name="TbxGiftName" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" FontFamily="Verdana" FontSize="16" Height="30"></TextBox>
+        <TextBox x:Name="TbxGiftPrice" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" FontFamily="Verdana" FontSize="16" Height="30"></TextBox>
         <Button x:Name="BtnSave" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnSave_Click" Width="100" Height="40" FontFamily="Verdana" FontSize="16">Save</Button>
         <Button x:Name="BtnCancel" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BtnCancel_Click" Width="100" Height="40" FontFamily="Verdana" FontSize="16">Cancel</Button>
     </Grid>
